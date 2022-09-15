@@ -1,4 +1,11 @@
+body{
+    text-align: center;
+}
+
 .title{
     color: red;
-    text-align: center;
+}
+
+#input{
+    display: inline-block;
 }
