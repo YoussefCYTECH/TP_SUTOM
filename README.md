@@ -2,9 +2,9 @@
 
 ## Description 
 
-Motus app running with micro services
+The famous Motus app running with micro services
 
- ## Usage 
+ ## How to USE
  
  use with standard node command
  
@@ -13,7 +13,7 @@ Motus app running with micro services
  node index.js
  ```
 
-go to http://localhost:3000
+then go to http://localhost:3000
 
 
 # Author
@@ -24,3 +24,13 @@ Cy Tech Cergy
 # TODO
 - Mot aléatoire chaque jour et non fixe
 - visuels améliorés
+- Passer le js jquery dans static (ou module)
+
+sequenceDiagram
+    Server-->>+Client: Mot du jour
+    Client->>+Server: Tentatives du joueur
+    Client-->>-localStorage: Score, user, moyenne d'essais
+
+
+            
+
