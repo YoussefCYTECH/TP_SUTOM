@@ -3,7 +3,7 @@
 ## Description 
 
 The famous Motus app running with micro services.\
-RULES coming ..\  
+RULES coming ..  
 
 By Youssef AGOUSSAL ING3 IA1\
 CY Tech Cergy
