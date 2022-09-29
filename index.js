@@ -19,10 +19,5 @@ app.get('/word', (req, res) => {
     var word = text_array[1];
     word = "poulailler"; //Pour test
 
-/*
-    const d = new Date();
-    let day = d.getDay();
-    let word = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"][day]*/
-
     res.send(word);
 })
