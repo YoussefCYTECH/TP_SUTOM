@@ -3,7 +3,10 @@
 ## Description 
 
 The famous Motus app running with micro services.\
-RULES coming ..
+RULES coming ..\  
+
+By Youssef AGOUSSAL ING3 IA1\
+CY Tech Cergy
 
  ## How to USE
  
@@ -31,7 +34,7 @@ Dotted line = the response
 
 ## Score API
 - Which server are you gone use ?\
-A nodeJS server, separate from the first one
+A nodeJS server, separate from the Motus API
 
 
 - Which port are you gone use ?\
