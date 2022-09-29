@@ -62,7 +62,7 @@
     var word = "";
     var attempts = 0;
 
-    $.get("/mot", function (data) {
+    $.get("/word", function (data) {
         word = data.trim().toUpperCase()
         document.getElementById('letters_number').innerHTML=word.length;
 

@@ -12,17 +12,17 @@ app.listen(port, () => {
 
 // Fonctions de redirections :
 
-app.get('/mot', (req, res) => {
+app.get('/word', (req, res) => {
 
     var fs = require('fs');
     var text_array = fs.readFileSync('data/liste_francais_utf8.txt').toString().split("\n");
-    var mot = text_array[1];
-    mot = "vendredi"; //Pour test
+    var word = text_array[1];
+    word = "poulailler"; //Pour test
 
 /*
     const d = new Date();
     let day = d.getDay();
     let word = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"][day]*/
 
-    res.send(mot);
+    res.send(word);
 })
