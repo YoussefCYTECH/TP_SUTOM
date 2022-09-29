@@ -1,11 +1,21 @@
 body{
     text-align: center;
+    background-color: rgba(58, 53, 53, 0.733);
+    color: white;
+    font-size: 22px;
 }
 
 .title{
-    color: red;
+    display: inline-block;
+    font-style: italic ;
 }
 
-#input{
-    display: inline-block;
+.logout{
+    background-color: red; border-radius: 4 px; opacity: 0.8; size: 20 px;
+}
+
+#gameContainer{
+    border: 1px solid black;
+    width: 30%;
+    align-items: center;
 }

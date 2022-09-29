@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="/google.font.css">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="/css/normalize/8.0.1/normalize.css">
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="/css/milligram/1.4.1/milligram.css">
+
+    <!-- Jquery -->
+    <script src="/jquery-3.6.0.js"></script>
+
+</head>
+
+<body style="font-size:45px">
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h1>YOUR SCORE</h1>
+            </div>
+        </div>
+
+        <input value="PLAY" onclick="document.location='index.html'"
+            style="background-color: green; border-radius: 4 px; opacity: 0.8">
+
+
+
+        <div class="row">
+            You guessed <p style="color: red">
+                <script>document.write(localStorage.getItem('score'));</script>
+            </p>
+            words !
+
+        </div>
+
+        <br>
+        Average attempts :
+        <script>document.write(localStorage.getItem('average'));</script>
+    </div>
+</body>
+
+<script>
+
+    if (localStorage.getItem('user') == null) {
+        alert('Please log in first');
+        window.location.href = "login.html";
+    }
+
+</script>
+
+</html>

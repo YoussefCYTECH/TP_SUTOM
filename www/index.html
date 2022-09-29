@@ -2,29 +2,129 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>SUTOM NodeJS</title>
+  <title>SUTOM Youssef Agoussal</title>
   <link href="css/style.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript">
-        $.get('/mot',(data)=>{
-            alert(data)
-        });
-
-
-
-
-  </script>
+  
+  <!-- Jquery -->
+  <script src="/jquery-3.6.0.js"></script>
 </head>
 <body>
     
-    <h1 class="title">TP2 SUTOM</h1> <br><br>
+    <h1 class="title">SUTOM</h1> <br><br>
 
-    <form id="#input" method="GET">
-        <label for="wordInput">Entrez un mot :</label><br>
-        <input type="text" id="wordInput" name="wordInput"><br>
-        <input type="submit" value="Valider">
-    </form>
+
+    <div style="text-align: right; color: red">
+        Bonjour, <script>document.write(localStorage.getItem('user'))</script>
+
+        <button onclick="logout()" class="logout">Logout</button>
+    </div>
+
+    <br>
+    <button onclick="document.location = 'score.html'">CLICK TO SEE SCORE</button>
+    <br><br>
+
+
+
+    <div id="gameContainer">
+        <form id="inputForm">
+            <label>Guess the word in <span id="letters_number"></span> letters :</label><br>
+
+            <input style="text-transform: uppercase;" id="response"/>
+            <input type="submit" value="Submit">
+        </form>
+
+        <!--Affichage des mots bien placés :-->
+        <span id="progress"></span>
+    </div>
+
 
 
 </body>
+
+<script>
+
+
+    if (localStorage.getItem('user') == null) {
+        alert('Please log in first');
+        window.location.href = "login.html";
+    }
+
+
+    function logout() {
+        alert('Logout');
+        localStorage.removeItem('user');
+        localStorage.removeItem('score');
+        localStorage.removeItem('average');
+        window.location.href = "login.html";
+    }
+
+
+    var word = "";
+    var attempts = 0;
+
+    $.get("/mot", function (data) {
+        word = data.trim().toUpperCase()
+        document.getElementById('letters_number').innerHTML=word.length;
+
+        $("#response").attr("maxlength", word.length)
+        $("#response").attr("minlength", word.length)
+
+        $("form").on("submit", function (e) {
+            e.preventDefault();
+            submit_response()
+        });
+    });
+    
+    function submit_response() {
+        response = $("#response").val().toUpperCase()
+        if (response.length != word.length) {
+            alert("Incorrect word length")
+        }
+
+        response_analysis = ""
+        var found = true; //Used to know when to end the game
+        
+        
+        for (i = 0; i < word.length; i++) {
+            letter = response[i]
+
+            if (letter == word[i]) {
+                response_analysis += getSpan(letter, 'palegreen')
+            }
+            else if (word.split('').includes(letter)) {
+                found = false;
+                response_analysis += getSpan(letter, 'orange')
+            }
+            else {
+                found = false;
+                response_analysis += getSpan(letter, 'none')
+            }
+        }
+        $("#progress").append(response_analysis + "<br />")
+        $("#response").val('')
+        $("#response").focus()
+        attempts++;
+
+        if (found){
+        alert('You have found the word of the day ! Attempts : '+attempts);
+
+        // Then we implement the total score of the player (= number of words guessed)
+        new_score=parseInt(localStorage.getItem('score')) + 1;
+        localStorage.setItem('score', new_score);
+        
+        local_average = parseInt(localStorage.getItem('average'));
+        new_average=(local_average + attempts)/new_score;
+        localStorage.setItem('average', new_average);
+        }
+    }
+
+    function getSpan(letter, color) {
+        return `<span style="background-color:${color}">${letter.toUpperCase()}&nbsp</span>`
+    }
+
+    $("#response").focus()
+
+
+
+</script>
 </html>
