@@ -28,7 +28,7 @@ Cy Tech Cergy
 Full line = a request\
 Dotted line = the response
 
-[![](https://mermaid.ink/img/pako:eNp9kT1rAzEMhv-K0NIhd-3uIVDSpUMgkKGLF3FWegZ_XG2ZNIT89_rqJDQ31JPw8-gVSGccomFUmPmrcBj4zdJnIq8D1LdxloP06_U2SsnwuntXYIPh7-dRvGvOHfXVW7WOR2uRtfoT9nKMyfyXM3N4CKj0BneOTpyeMkiynKEEsQ5GhqMNeTl0P8TEbehI-cOGDkiE_SRX9S70C30T_VSEgYKBMhmqZZ5pa7s97NBz8mRNXeZ5ZhplZM8aVS0NH6g40ajDpapUJO5PYUAlqXCHLfe6e1QHcrn-srES07Yd6PdOlx-yu4ti)](https://mermaid.live/edit#pako:eNp9kT1rAzEMhv-K0NIhd-3uIVDSpUMgkKGLF3FWegZ_XG2ZNIT89_rqJDQ31JPw8-gVSGccomFUmPmrcBj4zdJnIq8D1LdxloP06_U2SsnwuntXYIPh7-dRvGvOHfXVW7WOR2uRtfoT9nKMyfyXM3N4CKj0BneOTpyeMkiynKEEsQ5GhqMNeTl0P8TEbehI-cOGDkiE_SRX9S70C30T_VSEgYKBMhmqZZ5pa7s97NBz8mRNXeZ5ZhplZM8aVS0NH6g40ajDpapUJO5PYUAlqXCHLfe6e1QHcrn-srES07Yd6PdOlx-yu4ti)
+[![](https://mermaid.ink/img/pako:eNp9kT9rw0AMxb-K0NIhdrt7MJR06RAIZOhiKMKnxAf3x73T1Q0h373n2A6Nh2oS9356T5wu2HrFWGHkr8Su5TdNp0C2cZBrazQ7Ket65yVFeN2_V6Cd4p_nTqyZmLtUZm4zTTxSK6_NH7OXwQf1n8-ow4NBVhdxb-jM4SmCBM0RkhNtoGMYtIvr0EPrA0-hHcUP7QogEba9zOgdKFf41ts-CQM5BalXlNs4quuxuoZlMcfD543JId8c6DTDS2GBloMlrfLPX0atQenYcoNVbhUfKRlpsHHXjFISfzi7FisJiQuclpgPhdWRTMyvrLT4sJuueTvq9ReehpoQ)](https://mermaid.live/edit#pako:eNp9kT9rw0AMxb-K0NIhdrt7MJR06RAIZOhiKMKnxAf3x73T1Q0h373n2A6Nh2oS9356T5wu2HrFWGHkr8Su5TdNp0C2cZBrazQ7Ket65yVFeN2_V6Cd4p_nTqyZmLtUZm4zTTxSK6_NH7OXwQf1n8-ow4NBVhdxb-jM4SmCBM0RkhNtoGMYtIvr0EPrA0-hHcUP7QogEba9zOgdKFf41ts-CQM5BalXlNs4quuxuoZlMcfD543JId8c6DTDS2GBloMlrfLPX0atQenYcoNVbhUfKRlpsHHXjFISfzi7FisJiQuclpgPhdWRTMyvrLT4sJuueTvq9ReehpoQ)
 
 
 
@@ -59,3 +59,4 @@ We want to store 2 integer variable 'score' 'average' and 1 string 'user'
 - [ ] Rendre le mot aléatoire chaque jour et non fixe
 - [ ] Ameliorer les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
+- [ ] Rattraper TD Docker et Proxy

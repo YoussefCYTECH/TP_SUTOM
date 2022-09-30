@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  score_service:
+    image: score
+    ports:
+      - "5432:5432"
+    restart: always
+    depends_on:
+      - index_service
+  index_service:
+    image: index
+    ports:
+      - "8080:8080"
+    restart: always

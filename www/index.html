@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="utf-8">
-  <title>SUTOM Youssef Agoussal</title>
-  <link href="css/style.css" rel="stylesheet" />
-  
-  <!-- Jquery -->
-  <script src="/jquery-3.6.0.js"></script>
+    <meta charset="utf-8">
+    <title>SUTOM Youssef Agoussal</title>
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Jquery -->
+    <script src="/jquery-3.6.0.js"></script>
 </head>
+
 <body>
-    
+
     <h1 class="title">SUTOM</h1> <br><br>
 
 
     <div style="text-align: right; color: red">
-        Bonjour, <script>document.write(localStorage.getItem('user'))</script>
+        Bonjour,
+        <script>document.write(localStorage.getItem('user'))</script>
 
         <button onclick="logout()" class="logout">Logout</button>
     </div>
@@ -27,9 +30,10 @@
 
     <div id="gameContainer">
         <form id="inputForm">
-            <label>Guess the word in <span id="letters_number"></span> letters :</label><br>
+            <label>Guess the word in <span id="letters_number"></span> letters beginning by <span
+                    id="begin_letter"></span></label><br>
 
-            <input style="text-transform: uppercase;" id="response"/>
+            <input style="text-transform: uppercase;" id="response" /><br>
             <input type="submit" value="Submit">
         </form>
 
@@ -38,14 +42,12 @@
     </div>
 
 
-
 </body>
 
 <script>
 
 
     if (localStorage.getItem('user') == null) {
-        alert('Please log in first');
         window.location.href = "login.html";
     }
 
@@ -64,7 +66,9 @@
 
     $.get("/word", function (data) {
         word = data.trim().toUpperCase()
-        document.getElementById('letters_number').innerHTML=word.length;
+        document.getElementById('letters_number').innerHTML = word.length;
+        document.getElementById('begin_letter').innerHTML = word[0];
+
 
         $("#response").attr("maxlength", word.length)
         $("#response").attr("minlength", word.length)
@@ -74,7 +78,7 @@
             submit_response()
         });
     });
-    
+
     function submit_response() {
         response = $("#response").val().toUpperCase()
         if (response.length != word.length) {
@@ -83,8 +87,7 @@
 
         response_analysis = ""
         var found = true; //Used to know when to end the game
-        
-        
+
         for (i = 0; i < word.length; i++) {
             letter = response[i]
 
@@ -105,16 +108,22 @@
         $("#response").focus()
         attempts++;
 
-        if (found){
-        alert('You have found the word of the day ! Attempts : '+attempts);
+        if (found) {
+            alert('You have found the word of the day ! Attempts : ' + attempts);
 
-        // Then we implement the total score of the player (= number of words guessed)
-        new_score=parseInt(localStorage.getItem('score')) + 1;
-        localStorage.setItem('score', new_score);
-        
-        local_average = parseInt(localStorage.getItem('average'));
-        new_average=(local_average + attempts)/new_score;
-        localStorage.setItem('average', new_average);
+
+            // Appel de la nouvelle API score
+            $.ajax({
+                url: "http://localhost:3001/win_game",
+                type: "POST",
+                data: {
+                    'user': localStorage.getItem('user'),
+                    'attempts': attempts
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            })
         }
     }
 
@@ -127,4 +136,5 @@
 
 
 </script>
+
 </html>

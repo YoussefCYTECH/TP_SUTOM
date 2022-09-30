@@ -1,23 +1,47 @@
-const express = require('express')
+const express = require('express');
+const path = require('path');
+const seedrandom = require('seedrandom');
+const date = new Date;
+const { readFileSync, promises: fsPromises } = require('fs');
+//const os = require('node:os');
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+
 
 app.use(express.static("www"))
 app.use('/', express.static('static'));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+    console.log(`MOTUS main API listening on port ${port}`)
 })
 
 
-// Fonctions de redirections :
+
+//Pour le mot aléatoire :
+
+function random_item(items) {
+    var seed = seedrandom(date.toDateString())()
+    return items[Math.floor(seed * items.length)]
+}
 
 app.get('/word', (req, res) => {
 
-    var fs = require('fs');
-    var text_array = fs.readFileSync('data/liste_francais_utf8.txt').toString().split("\n");
-    var word = text_array[1];
-    word = "poulailler"; //Pour test
+    const d = new Date();
+    let day = d.getDay();
+    var text_array = readFileSync('data/liste_francais_utf8.txt').toString().split("\n");
+
+    var word = random_item(text_array);
+    word = "vendredi"; //Pour test plus vite
 
     res.send(word);
+})
+
+
+
+app.get('/proxy', (req, res) => {
+
+    //Probleme avec os
+    out = 'MOTUS APP working on os.hostname port ' + port;
+
+    res.send(out);
 })

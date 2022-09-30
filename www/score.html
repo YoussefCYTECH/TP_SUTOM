@@ -22,22 +22,19 @@
             </div>
         </div>
 
-        <input value="PLAY" onclick="document.location='index.html'"
-            style="background-color: green; border-radius: 4 px; opacity: 0.8">
-
+        <button onclick="document.location='index.html'"
+            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
+            PLAY</button>
 
 
         <div class="row">
-            You guessed <p style="color: red">
-                <script>document.write(localStorage.getItem('score'));</script>
-            </p>
+            You guessed <span id="score" style="color: red"></span>
             words !
 
         </div>
 
         <br>
-        Average attempts :
-        <script>document.write(localStorage.getItem('average'));</script>
+        Average attempts : <span id="average"></span>
     </div>
 </body>
 
@@ -47,6 +44,18 @@
         alert('Please log in first');
         window.location.href = "login.html";
     }
+
+    $.ajax({
+        url: "http://localhost:3001/print_score",
+        type: "GET",
+        success: function (data) {
+            document.getElementById('score').innerHTML = data.score
+            document.getElementById('average').innerHTML = data.average
+        }
+    })
+
+
+
 
 </script>
 

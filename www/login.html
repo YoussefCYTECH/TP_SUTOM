@@ -16,8 +16,9 @@
             </div>
         </div>
 
-        <input value="PLAY" onclick="document.location='index.html'"
-            style="background-color: green; border-radius: 4 px; opacity: 0.8">
+        <button onclick="document.location='index.html'"
+            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
+            PLAY</button>
 
 
 
@@ -38,7 +39,21 @@
         localStorage.setItem('user', $("#response").val());
         localStorage.setItem('score', 0);
         localStorage.setItem('average', 0);
-        document.location = "/index.html";
+
+        /* //Ecriture dans le json au lieu du localstorage
+        alert('Json');
+        var fs = require('fs');
+        alert('debug');
+        var jsonString = fs.readFileSync('../data/users.json').toString();    
+        var obj = JSON.parse(jsonString);
+        console.log('debug');
+
+        // Accessing value from JS object
+        console.log(''+(obj[0].user));*/
+        
+
+        //alert('debug');
+        window.location.href = "score.html"; //Ne marche pas jsp pourquoi
     }
 
 </script>
