@@ -3,17 +3,39 @@ const path = require('path');
 const seedrandom = require('seedrandom');
 const date = new Date;
 const { readFileSync, promises: fsPromises } = require('fs');
-//const os = require('node:os');
 const app = express()
 const port = process.env.PORT || 3000
 
 
 app.use(express.static("www"))
 app.use('/', express.static('static'));
+app.use(express.urlencoded({ extended: false }));
 
 app.listen(port, () => {
     console.log(`MOTUS main API listening on port ${port}`)
 })
+
+
+var session = require('express-session');
+app.set('trust proxy', 1)
+app.use(session({
+    secret: "Random",
+    saveUninitialized: true,
+    resave: false
+}));
+
+/*
+// Verifie si le joueur est connecté
+app.use((req, res, next) => {
+    if (req.session.user) {
+        console.log("debug1")
+        console.log(req.session.user)
+        next()
+    } else {
+        console.log("debug2")
+        res.redirect('login.html')
+    }
+});*/
 
 
 
@@ -39,9 +61,6 @@ app.get('/word', (req, res) => {
 
 
 app.get('/proxy', (req, res) => {
-
-    //Probleme avec os
-    out = 'MOTUS APP working on os.hostname port ' + port;
-
+    out = 'MOTUS APP working on port ' + port;
     res.send(out);
 })

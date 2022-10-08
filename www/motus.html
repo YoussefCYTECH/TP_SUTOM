@@ -15,15 +15,14 @@
     <h1 class="title">SUTOM</h1> <br><br>
 
 
-    <div style="text-align: right; color: red">
-        Bonjour,
-        <script>document.write(localStorage.getItem('user'))</script>
+    <div style="text-align: right">
+        Bonjour, <span id="user" style="color: yellow"></span>
 
         <button onclick="logout()" class="logout">Logout</button>
     </div>
 
     <br>
-    <button onclick="document.location = 'score.html'">CLICK TO SEE SCORE</button>
+    <button onclick="document.location = 'http://localhost:3000/score.html'">CLICK TO SEE SCORE</button>
     <br><br>
 
 
@@ -48,15 +47,18 @@
 
     // Verfication si l'utilisateur est connecté
     if (localStorage.getItem('user') == null) {
-        window.location.href = "login.html";
+        alert('Please log in first');
+        window.location.href = "http://localhost:3000/login.html";
     }
+    document.getElementById('user').innerHTML = localStorage.getItem('user');
+
 
     function logout() {
-        alert('Logout');
         localStorage.removeItem('user');
         localStorage.removeItem('score');
         localStorage.removeItem('average');
-        window.location.href = "login.html";
+        alert('Logged out');
+        window.location.href = "http://localhost:3000/login.html";
     }
 
 
@@ -122,7 +124,7 @@
                     'attempts': attempts
                 },
                 success: function (data) {
-                    console.log(data);
+                    console.log("Score updated");
                 }
             })
         }

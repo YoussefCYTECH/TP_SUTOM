@@ -16,44 +16,59 @@
             </div>
         </div>
 
-        <button onclick="document.location='index.html'"
+        <button onclick="document.location='http://localhost:3000/motus.html'"
             style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
             PLAY</button>
 
 
 
         <div class="row">
-            <form id="input" onsubmit="submit_response()">
-                <label>Your name :</label>
-                <input type="text" id="response"> </input><br>
-                <input type="submit" value="Valider">
+            <form id="input" onsubmit="return submit_response()">
+
+                <label>Username :</label>
+                <input type="text" id="user" name="user" required> </input><br>
+
+                <label>Password :</label>
+                <input type="password" id="password" name="password" required> </input><br>
+
+                <input type="submit" value="Submit">
             </form>
+
+            <span id="response" style="color: red"></span>
         </div>
     </div>
 </body>
 
 <script>
 
+    // On envoie les données à l'API Auth qui vérifie si ca correspond bien
     function submit_response() {
 
-        localStorage.setItem('user', $("#response").val());
-        localStorage.setItem('score', 0);
-        localStorage.setItem('average', 0);
+        // Appel de l'API auth
+        $.ajax({
+            url: "http://localhost:3002/check_login",
+            type: "POST",
+            data: {
+                'user': $("#user").val(),
+                'password': $("#password").val()
+            },
+            success: function (data) {
+                if (data.status == 'fail') {
+                    document.getElementById('response').innerHTML = data.err
+                    return false;
+                }
+                localStorage.setItem('user', data.user);
 
-        /* //Ecriture dans le json au lieu du localstorage
-        alert('Json');
-        var fs = require('fs');
-        alert('debug');
-        var jsonString = fs.readFileSync('../data/users.json').toString();    
-        var obj = JSON.parse(jsonString);
-        console.log('debug');
+                // Ces 2 lignes devront etre gerees par l'API score
+                /*localStorage.setItem('score', data.score);
+                localStorage.setItem('average', data.average);*/
 
-        // Accessing value from JS object
-        console.log(''+(obj[0].user));*/
-        
+                console.log("User logged in")
+                window.location.href = "http://localhost:3000/motus.html";
+            }
+        })
 
-        //alert('debug');
-        window.location.href = "score.html"; //Ne marche pas jsp pourquoi
+        return false;
     }
 
 </script>

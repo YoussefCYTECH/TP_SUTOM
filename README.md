@@ -13,6 +13,7 @@ RULES coming ..
  npm install
  node index.js
  node score.js
+ node auth.js
  ```
 
 then go to http://localhost:3000
@@ -53,9 +54,15 @@ Yes, by using separate usernames and a database storing scores for each user
 We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 'password'
 
-
+## List of API
+- Motus API, port 3000 : main API managing the game
+- Score API, port 3001 : API updating and sending the score of the user
+- Auth API, port 3002 : API managing the user's logging process
 
 # TODO
 - [ ] Ameliorer/faire les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
 - [ ] Creer une API séparée AUTH pour l'authentification 
+- [ ] Lorsqu'un user joue pour la 1ere fois, lui creer des données dans score.json
+- [ ] Crypter le mot de passe dans le json
+- [ ] Passer du json à une BDD postgres (optionnel ?)
