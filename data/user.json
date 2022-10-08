@@ -1,8 +1,8 @@
 {
-    "Youssef": {
-        "password": "you"
-    },
-    "Test": {
-        "password": "test"
-    }
+	"Youssef": {
+		"password": "you"
+	},
+	"Test": {
+		"password": "test"
+	}
 }

@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 })
 
 app.listen(port, () => {
-  console.log(`MOTUS Auth API listening on port ${port}`)
+    console.log(`MOTUS Auth API listening on port ${port}`)
 })
 
 
@@ -24,7 +24,7 @@ app.use(session({
     secret: "Random",
     saveUninitialized: true,
     resave: false
-  }));
+}));
 
 
 
@@ -33,20 +33,18 @@ const user = "Youssef"
 
 
 // Fonctions de redirections :
-
-
-
-app.use('/session', (req, res) => {ZZ
+app.use('/session', (req, res) => {
+    ZZ
     res.send("session variables : " + JSON.stringify(session))
 })
 
 
 app.use('/check_login', (req, res) => {
     var json = JSON.parse(readFileSync('data/user.json').toString());
-    session=req.session
+    session = req.session
 
     //1 : Verifier que le user existe
-    if (json.hasOwnProperty(req.body.user) == true) {
+    if (json.hasOwnProperty(req.body.user)) {
         console.log("Username found")
 
         //2 : verifier le password
@@ -54,13 +52,36 @@ app.use('/check_login', (req, res) => {
             console.log("Password correct")
             session.user = req.body.user;
 
-            res.send({user: session.user})
+            res.send({ user: session.user })
         }
         else {
-            res.send({status: 'fail', err:'Invalid password, please try again'});
+            res.send({ status: 'fail', err: 'Invalid password, please try again' });
         }
     }
     else {
-        res.send({status: 'fail', err:'Unknown username, please try again'});
+        res.send({ status: 'fail', err: 'Unknown username, please try again' });
+    }
+})
+
+app.use('/register', (req, res) => {
+    var json = JSON.parse(readFileSync('data/user.json').toString());
+    session = req.session
+
+    //1 : Verifier si le user existe pas deja
+    if (!json.hasOwnProperty(req.body.user)) {
+
+        json[req.body.user] = { password: req.body.password };
+        fs.writeFile("data/user.json", JSON.stringify(json, null,'\t'), function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+        session.user = req.body.user;
+        res.send({ user: session.user })
+
+    }
+    else {
+        res.send({ status: 'fail', err: 'This username already exists, please try again' });
     }
 })

@@ -14,6 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 app.listen(port, () => {
     console.log(`MOTUS main API listening on port ${port}`)
 })
+app.get('/proxy', (req, res) => {
+    out = 'MOTUS APP working on port ' + port;
+    res.send(out);
+})
+
+app.get('/', (req, res) => {res.redirect('motus.html')})
 
 
 var session = require('express-session');
@@ -37,6 +43,19 @@ app.use((req, res, next) => {
     }
 });*/
 
+app.use('/login', (req, res) => {
+    if (req.session.user!= null){
+        res.redirect('/')
+    }
+    res.redirect('login.html')
+});
+app.use('/register', (req, res) => {
+    if (req.session.user!= null){
+        res.redirect('/')
+    }
+    res.redirect('login.html')
+})
+
 
 
 //Pour le mot aléatoire :
@@ -56,11 +75,4 @@ app.get('/word', (req, res) => {
     word = "vendredi"; //Pour test plus vite
 
     res.send(word);
-})
-
-
-
-app.get('/proxy', (req, res) => {
-    out = 'MOTUS APP working on port ' + port;
-    res.send(out);
 })

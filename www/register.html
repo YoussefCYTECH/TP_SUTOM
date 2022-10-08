@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>SUTOM - Login</title>
+    <title>SUTOM - Register</title>
     <!-- Jquery -->
     <script src="/jquery-3.6.0.js"></script>
 
@@ -12,7 +12,7 @@
     <div class="container" style="text-align: center;">
         <div class="row">
             <div class="column">
-                <h1>LOGIN</h1>
+                <h1>REGISTER</h1>
             </div>
         </div>
 
@@ -23,34 +23,42 @@
                 <input type="text" id="user" required> </input><br>
 
                 <label>Password :</label>
-                <input type="password" id="password" required></input><br>
+                <input type="password" id="password" required> </input><br>
+
+                <label>Confirm your password :</label>
+                <input type="password" id="password_confirm" required></input><br>
+
 
                 <input type="submit" value="Submit" style="width: 10%">
             </form>
+
+            <button onclick="document.location='http://localhost:3000/login'"
+                style=" border-radius: 4 px; width: 20%">Back to LOGIN</button>
+
+            <br><br><span id="response" style="color: red"></span>
         </div>
-
-        <button onclick="document.location='http://localhost:3000/register.html'"
-            style=" border-radius: 4 px; width: 20%">REGISTER</button>
-
-        <br><br><span id="response" style="color: red"></span>
-
     </div>
 </body>
 
 <script>
+
     // Verification si l'utilisateur est connecté
     if (localStorage.getItem('user') != null) {
         alert('You are already logged in');
         window.location.href = "http://localhost:3000";
     }
 
-
-    // On envoie les données à l'API Auth qui vérifie si ca correspond bien
+    // On envoie les données à l'API Auth qui s'occupe de l'inscription
     function submit_response() {
+
+        if($("#password").val() != $("#password_confirm").val()){
+            document.getElementById('response').innerHTML = "The 2 passwords don't match"
+            return false;
+        }
 
         // Appel de l'API auth
         $.ajax({
-            url: "http://localhost:3002/check_login",
+            url: "http://localhost:3002/register",
             type: "POST",
             data: {
                 'user': $("#user").val(),
@@ -68,7 +76,7 @@
                 localStorage.setItem('average', data.average);*/
 
                 console.log("User logged in")
-                window.location.href = "http://localhost:3000/motus.html";
+                window.location.href = "http://localhost:3000";
             }
         })
         return false;
