@@ -1,1 +1,10 @@
-{"Youssef":{"score":4,"average_tries":1.25},"Test":{"score":1,"average_tries":1}}
+{
+	"Youssef": {
+		"score": 7,
+		"average_tries": 1.1428571428571428
+	},
+	"Test": {
+		"score": 1,
+		"average_tries": 1
+	}
+}

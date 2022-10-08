@@ -46,11 +46,10 @@
 
 <script>
 
-
+    // Verfication si l'utilisateur est connecté
     if (localStorage.getItem('user') == null) {
         window.location.href = "login.html";
     }
-
 
     function logout() {
         alert('Logout');
@@ -61,6 +60,7 @@
     }
 
 
+    // Gestion du jeu de MOTUS
     var word = "";
     var attempts = 0;
 
@@ -108,11 +108,12 @@
         $("#response").focus()
         attempts++;
 
+        // Si l'utilisateur a gagné :
         if (found) {
             alert('You have found the word of the day ! Attempts : ' + attempts);
 
 
-            // Appel de la nouvelle API score
+            // Appel de l'API score
             $.ajax({
                 url: "http://localhost:3001/win_game",
                 type: "POST",

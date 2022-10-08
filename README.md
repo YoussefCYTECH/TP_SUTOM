@@ -5,9 +5,6 @@
 The famous Motus app running with micro services.\
 RULES coming ..  
 
-By Youssef AGOUSSAL ING3 IA1\
-CY Tech Cergy
-
  ## How to USE
  
  use with standard node command
@@ -15,13 +12,14 @@ CY Tech Cergy
  ```
  npm install
  node index.js
+ node score.js
  ```
 
 then go to http://localhost:3000
 
 
 # Author
-Youssef AGOUSSAL ING3 IA1\
+Youssef AGOUSSAL and Rose MOUILLE ING3 IA1\
 Cy Tech Cergy
 
 ## Sequence diagram
@@ -42,21 +40,22 @@ The port 3001
 
 
 - Which API are you gone call ? which parameters ?\
-The client will call the Score API with the parameter new_score,
-which is the new score of the player after his new victory
+The client will call the Score API with the parameters user 
+(= the name of the user logged in) and attempts (attempts to find the word
+of the day)
 
 
 - Can we handle more than one user ?\
-Yes, by using the login and a database storing scores for each user
+Yes, by using separate usernames and a database storing scores for each user
 
 
 - What data do we want to store ?\
-We want to store 2 integer variable 'score' 'average' and 1 string 'user'
+We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
+'password'
 
 
 
 # TODO
-- [ ] Rendre le mot aléatoire chaque jour et non fixe
-- [ ] Ameliorer les visuels
+- [ ] Ameliorer/faire les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
-- [ ] Rattraper TD Docker et Proxy
+- [ ] Creer une API séparée AUTH pour l'authentification 

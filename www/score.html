@@ -45,12 +45,17 @@
         window.location.href = "login.html";
     }
 
+    // Fonction pour arrondir à X decimales près
+    function round(value, decimals) {return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);}
+
+
+    // On demande le score du user à l'API Score
     $.ajax({
         url: "http://localhost:3001/print_score",
         type: "GET",
         success: function (data) {
             document.getElementById('score').innerHTML = data.score
-            document.getElementById('average').innerHTML = data.average
+            document.getElementById('average').innerHTML = round(data.average, 2)
         }
     })
 

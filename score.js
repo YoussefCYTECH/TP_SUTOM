@@ -13,7 +13,6 @@ app.use((req, res, next) => {
     next()
 })
 
-
 app.listen(port, () => {
   console.log(`MOTUS Score API listening on port ${port}`)
 })
@@ -26,22 +25,20 @@ const user = "Youssef"
 // Fonctions de redirections :
 
 
-//Changer en win_game
 app.use('/win_game', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());
-    console.log(json)
-    console.log(req.body)
 
     json[req.body.user].score = json[req.body.user].score + 1
     json[req.body.user].average_tries = (json[req.body.user].average_tries * (json[req.body.user].score - 1) + parseInt(req.body.attempts)) / json[req.body.user].score
 
 
-    fs.writeFile("data/score.json", JSON.stringify(json), function (err) {
+    fs.writeFile("data/score.json", JSON.stringify(json, null,'\t'), function (err) {
         if (err) {
             console.log(err);
         }
     });
 
+    res.redirect('')
     res.send("ok")
 })
 
