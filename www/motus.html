@@ -18,7 +18,7 @@
     <div style="text-align: right">
         Bonjour, <span id="user" style="color: yellow"></span>
 
-        <button onclick="logout()" class="logout">Logout</button>
+        <button onclick="window.location.href = 'http://localhost:3002/logout'" class="logout">Logout</button>
     </div>
 
     <br>
@@ -46,20 +46,20 @@
 <script>
 
     // Verification si l'utilisateur est connecté
-    if (localStorage.getItem('user') == null) {
-        alert('Please log in first');
-        window.location.href = "http://localhost:3000/login.html";
-    }
-    document.getElementById('user').innerHTML = localStorage.getItem('user');
+    $.ajax({
+        url: "http://localhost:3002/get_user",
+        type: "GET",
+        async: false,
+        success: function (data) {
+            if (data.user == null) {
+                alert('Please log in first');
+                window.location.href = "http://localhost:3000/login.html";
+            }
+            document.getElementById('user').innerHTML = data.user
+            var user_local=data.user
+        }
+    });
 
-
-    function logout() {
-        localStorage.removeItem('user');
-        localStorage.removeItem('score');
-        localStorage.removeItem('average');
-        alert('Logged out');
-        window.location.href = "http://localhost:3000/login.html";
-    }
 
 
     // Gestion du jeu de MOTUS
@@ -120,7 +120,7 @@
                 url: "http://localhost:3001/win_game",
                 type: "POST",
                 data: {
-                    'user': localStorage.getItem('user'),
+                    'user': user_local,
                     'attempts': attempts
                 },
                 success: function (data) {

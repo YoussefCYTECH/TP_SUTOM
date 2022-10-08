@@ -18,7 +18,7 @@ app.listen(port, () => {
 })
 
 
-var session = require('express-session');
+session = require('express-session');
 app.set('trust proxy', 1)
 app.use(session({
     secret: "Random",
@@ -28,15 +28,18 @@ app.use(session({
 
 
 
-// TODO sessions express par req.session
-const user = "Youssef"
-
-
 // Fonctions de redirections :
 app.use('/session', (req, res) => {
-    ZZ
     res.send("session variables : " + JSON.stringify(session))
 })
+
+app.use('/get_user', (req, res) => { res.send({ user: session.user }) })
+app.use('/logout', (req, res) => {
+    session = null
+    res.redirect('http://localhost:3000/login');
+})
+
+
 
 
 app.use('/check_login', (req, res) => {
@@ -71,7 +74,7 @@ app.use('/register', (req, res) => {
     if (!json.hasOwnProperty(req.body.user)) {
 
         json[req.body.user] = { password: req.body.password };
-        fs.writeFile("data/user.json", JSON.stringify(json, null,'\t'), function (err) {
+        fs.writeFile("data/user.json", JSON.stringify(json, null, '\t'), function (err) {
             if (err) {
                 console.log(err);
             }

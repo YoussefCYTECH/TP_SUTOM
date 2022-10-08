@@ -20,7 +20,7 @@
             <form id="input" onsubmit="return submit_response()">
 
                 <label>Username :</label>
-                <input type="text" id="user" required> </input><br>
+                <input type="text" id="user" placeholder="Username" required> </input><br>
 
                 <label>Password :</label>
                 <input type="password" id="password" required></input><br>
@@ -39,10 +39,16 @@
 
 <script>
     // Verification si l'utilisateur est connecté
-    if (localStorage.getItem('user') != null) {
-        alert('You are already logged in');
-        window.location.href = "http://localhost:3000";
-    }
+    $.ajax({
+        url: "http://localhost:3002/get_user",
+        type: "GET",
+        success: function (data) {
+            if (data.user != null) {
+                alert('You are already logged in');
+                window.location.href = "http://localhost:3000";
+            }
+        }
+    });
 
 
     // On envoie les données à l'API Auth qui vérifie si ca correspond bien
@@ -61,11 +67,6 @@
                     document.getElementById('response').innerHTML = data.err
                     return false;
                 }
-                localStorage.setItem('user', data.user);
-
-                // Ces 2 lignes devront etre gerees par l'API score
-                /*localStorage.setItem('score', data.score);
-                localStorage.setItem('average', data.average);*/
 
                 console.log("User logged in")
                 window.location.href = "http://localhost:3000/motus.html";

@@ -18,7 +18,7 @@ app.listen(port, () => {
 })
 
 
-// TODO sessions express par req.session
+// TODO trouver comment passer les vars de session de auth.js ici
 const user = "Youssef"
 
 

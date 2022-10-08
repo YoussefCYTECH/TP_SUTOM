@@ -42,16 +42,24 @@
 
 <script>
 
-    if (localStorage.getItem('user') == null) {
-        alert('Please log in first');
-        window.location.href = "login.html";
-    }
+    // Verification si l'utilisateur est connecté
+    $.ajax({
+        url: "http://localhost:3002/get_user",
+        type: "GET",
+        success: function (data) {
+            if (data.user == null) {
+                alert('Please log in first');
+                window.location.href = "http://localhost:3000/login.html";
+            }
+        }
+    });
 
 
     // Fonction pour arrondir à X decimales près
-    function round(value, decimals) {return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);}
+    function round(value, decimals) { return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals); }
 
     // On demande le score du user à l'API Score
+    // Trouver comment lui envoyer le user de session qui est dans auth.js
     $.ajax({
         url: "http://localhost:3001/print_score",
         type: "GET",
