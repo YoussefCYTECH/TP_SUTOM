@@ -62,7 +62,6 @@
     function round(value, decimals) { return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals); }
 
     // On demande le score du user à l'API Score
-    // Trouver comment lui envoyer le user de session qui est dans auth.js
     $.ajax({
         url: "http://localhost:3001/print_score",
         type: "POST",
@@ -76,8 +75,5 @@
     })
 
 
-
-
 </script>
-
 </html>

@@ -4,5 +4,8 @@
 	},
 	"Test": {
 		"password": "test"
+	},
+	"a": {
+		"password": "a"
 	}
 }

@@ -14,12 +14,8 @@ app.use((req, res, next) => {
 })
 
 app.listen(port, () => {
-  console.log(`MOTUS Score API listening on port ${port}`)
+    console.log(`MOTUS Score API listening on port ${port}`)
 })
-
-
-// TODO trouver comment passer les vars de session de auth.js ici
-//const user = "Youssef"
 
 
 // Fonctions de redirections :
@@ -28,11 +24,16 @@ app.listen(port, () => {
 app.use('/win_game', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
+    // Si c'est la 1ere fois qu'il joue on l'initialise
+    if (!json[req.body.user]) {
+        json[req.body.user] = { score: 0, average_tries: 0 };
+    }
+
     json[req.body.user].score = json[req.body.user].score + 1
     json[req.body.user].average_tries = (json[req.body.user].average_tries * (json[req.body.user].score - 1) + parseInt(req.body.attempts)) / json[req.body.user].score
 
 
-    fs.writeFile("data/score.json", JSON.stringify(json, null,'\t'), function (err) {
+    fs.writeFile("data/score.json", JSON.stringify(json, null, '\t'), function (err) {
         if (err) {
             console.log(err);
         }
@@ -44,6 +45,10 @@ app.use('/win_game', (req, res) => {
 
 app.use('/print_score', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());
+
+    if (!json[req.body.user]) {
+        res.send({ score: 0, average: 0 })
+    }
 
     score = json[req.body.user].score
     average = json[req.body.user].average_tries

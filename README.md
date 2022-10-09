@@ -62,9 +62,7 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 # TODO
 - [ ] Ameliorer/faire les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
-- [ ] Creer une API séparée AUTH pour l'authentification 
-- [ ] Lorsqu'un user joue pour la 1ere fois, lui creer des données dans score.json
 - [ ] Crypter le mot de passe dans le json
 - [ ] Passer du json à une BDD postgres (optionnel ?)
 - [ ] Faire un footer commun pour toutes les pages
-- [ ] Trouver un moyen de passer les variables de session entre serveurs, ou moyen plus securisé que le localStorage
+- [X] Trouver un moyen de passer les variables de session entre serveurs --> On demande le user à Auth, le stocke en variable JS le temps d'une page pour le renvoyer à Score
