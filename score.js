@@ -19,7 +19,7 @@ app.listen(port, () => {
 
 
 // TODO trouver comment passer les vars de session de auth.js ici
-const user = "Youssef"
+//const user = "Youssef"
 
 
 // Fonctions de redirections :
@@ -45,8 +45,8 @@ app.use('/win_game', (req, res) => {
 app.use('/print_score', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
-    score = json[user].score
-    average = json[user].average_tries
+    score = json[req.body.user].score
+    average = json[req.body.user].average_tries
 
     res.send({ score, average })
 })

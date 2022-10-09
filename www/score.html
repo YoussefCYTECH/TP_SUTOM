@@ -43,14 +43,17 @@
 <script>
 
     // Verification si l'utilisateur est connecté
+    var user_local
     $.ajax({
         url: "http://localhost:3002/get_user",
         type: "GET",
+        async: false,
         success: function (data) {
             if (data.user == null) {
                 alert('Please log in first');
-                window.location.href = "http://localhost:3000/login.html";
+                window.location.href = "http://localhost:3000/login.html"; 
             }
+            user_local = data.user
         }
     });
 
@@ -62,9 +65,11 @@
     // Trouver comment lui envoyer le user de session qui est dans auth.js
     $.ajax({
         url: "http://localhost:3001/print_score",
-        type: "GET",
+        type: "POST",
+        data: {
+            'user': user_local
+        },
         success: function (data) {
-            console.log('Score received')
             document.getElementById('score').innerHTML = data.score
             document.getElementById('average').innerHTML = round(data.average, 2)
         }

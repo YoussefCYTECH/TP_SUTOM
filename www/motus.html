@@ -46,6 +46,7 @@
 <script>
 
     // Verification si l'utilisateur est connecté
+    var user_local
     $.ajax({
         url: "http://localhost:3002/get_user",
         type: "GET",
@@ -56,7 +57,7 @@
                 window.location.href = "http://localhost:3000/login.html";
             }
             document.getElementById('user').innerHTML = data.user
-            var user_local=data.user
+            user_local=data.user
         }
     });
 
