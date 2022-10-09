@@ -16,11 +16,20 @@
 
 </head>
 
-<body style="font-size:45px">
-    <div class="container">
+<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
+    <div class="container" style="text-align: center;">
+
         <div class="row">
             <div class="column">
                 <h1>YOUR SCORE</h1>
+            </div>
+
+            <div style="text-align: right">
+                Hello, <span id="user" style="color: yellow"></span>
+
+                <button onclick="window.location.href = 'http://localhost:3002/logout'" class="logout"
+                    style="background-color: red; border-radius: 4 px; opacity: 0.8; size: 20 px;">
+                    Logout</button>
             </div>
         </div>
 
@@ -53,6 +62,7 @@
                 alert('Please log in first');
                 window.location.href = "http://localhost:3000/login.html";
             }
+            document.getElementById('user').innerHTML = data.user
             user_local = data.user
         }
     });
@@ -76,4 +86,5 @@
     }
 
 </script>
+
 </html>

@@ -40,7 +40,7 @@ app.use('/get_user', (req, res) => {
     }
     else {
         res.send({ user: session.user })
-    }
+    } //Difference entre session et req.session ?
 })
 app.use('/logout', (req, res) => {
     delete session
@@ -50,6 +50,8 @@ app.use('/logout', (req, res) => {
 
 
 
+const { createHash } = require('crypto');
+function hash(string) {return createHash('sha256').update(string).digest('hex');}
 
 app.use('/check_login', (req, res) => {
     var json = JSON.parse(readFileSync('data/user.json').toString());
@@ -60,7 +62,7 @@ app.use('/check_login', (req, res) => {
         console.log("Username found")
 
         //2 : verifier le password
-        if (json[req.body.user].password == req.body.password) {
+        if (json[req.body.user].password == hash(req.body.password)) {
             session.user = req.body.user;
 
             console.log('logged in')
@@ -82,7 +84,7 @@ app.use('/register', (req, res) => {
     //1 : Verifier si le user existe pas deja
     if (!json.hasOwnProperty(req.body.user)) {
 
-        json[req.body.user] = { password: req.body.password };
+        json[req.body.user] = { password: hash(req.body.password) };
         fs.writeFile("data/user.json", JSON.stringify(json, null, '\t'), function (err) {
             if (err) {
                 console.log(err);

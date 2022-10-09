@@ -8,7 +8,7 @@
 
 </head>
 
-<body style="font-size:45px">
+<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
         <div class="row">
             <div class="column">
@@ -54,9 +54,28 @@
         }
     });
 
+
+    /* //Servira à chiffrer avant d'envoyer, mais il faut trouver comment
+    //sauvegarder le string retourné (pour l'instant renvoi un objet present que dans la partie then())
+
+    function hash(string) {
+        const utf8 = new TextEncoder().encode(string);
+        return crypto.subtle.digest('SHA-256', utf8).then((hashBuffer) => {
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray
+                .map((bytes) => bytes.toString(16).padStart(2, '0'))
+                .join('');
+            return hashHex;
+        });
+    }
+    hash('a').then((hex) => console.log(hex));*/
+
+
     // On envoie les données à l'API Auth qui s'occupe de l'inscription
     function submit_response() {
 
+
+        //TODO chiffrement avant l'envoi
         if ($("#password").val() != $("#password_confirm").val()) {
             document.getElementById('response').innerHTML = "The 2 passwords don't match"
             return false;
