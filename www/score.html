@@ -51,29 +51,29 @@
         success: function (data) {
             if (data.user == null) {
                 alert('Please log in first');
-                window.location.href = "http://localhost:3000/login.html"; 
+                window.location.href = "http://localhost:3000/login.html";
             }
             user_local = data.user
         }
     });
 
-
     // Fonction pour arrondir à X decimales près
     function round(value, decimals) { return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals); }
 
     // On demande le score du user à l'API Score
-    $.ajax({
-        url: "http://localhost:3001/print_score",
-        type: "POST",
-        data: {
-            'user': user_local
-        },
-        success: function (data) {
-            document.getElementById('score').innerHTML = data.score
-            document.getElementById('average').innerHTML = round(data.average, 2)
-        }
-    })
-
+    if (typeof user_local != 'undefined') {
+        $.ajax({
+            url: "http://localhost:3001/print_score",
+            type: "POST",
+            data: {
+                'user': user_local
+            },
+            success: function (data) {
+                document.getElementById('score').innerHTML = data.score
+                document.getElementById('average').innerHTML = round(data.average, 2)
+            }
+        })
+    }
 
 </script>
 </html>

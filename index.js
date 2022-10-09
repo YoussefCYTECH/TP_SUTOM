@@ -22,40 +22,32 @@ app.get('/proxy', (req, res) => {
 app.get('/', (req, res) => {res.redirect('motus.html')})
 
 
+// Les verifications du login sont faites sur le html. On pourrait le mettre ici
+//si on trouve un moyen de passer les vars de session de Auth directement ici
+/*
 var session = require('express-session');
 app.set('trust proxy', 1)
 app.use(session({
     secret: "Random",
     saveUninitialized: true,
     resave: false
-}));
+}));*/
 
-/*
-// Verifie si le joueur est connecté
-app.use((req, res, next) => {
-    if (req.session.user) {
-        console.log("debug1")
-        console.log(req.session.user)
-        next()
-    } else {
-        console.log("debug2")
-        res.redirect('login.html')
-    }
-});*/
 
 app.use('/login', (req, res) => {
-    if (req.session.user!= null){
+    /*if (req.session!= null){
         res.redirect('/')
-    }
+    }*/
     res.redirect('login.html')
 });
 app.use('/register', (req, res) => {
-    if (req.session.user!= null){
+    /*if (req.session!= null){
         res.redirect('/')
-    }
-    res.redirect('login.html')
+    }*/
+    res.redirect('register.html')
 })
 
+app.use('/score', (req, res) => {res.redirect('score.html')})
 
 
 //Pour le mot aléatoire :
@@ -73,6 +65,7 @@ app.get('/word', (req, res) => {
 
     var word = random_item(text_array);
     word = "vendredi"; //Pour test plus vite
+    //console.log(word)//Pour test plus vite
 
     res.send(word);
 })

@@ -6,5 +6,9 @@
 	"Test": {
 		"score": 1,
 		"average_tries": 1
+	},
+	"a": {
+		"score": 2,
+		"average_tries": 1.5
 	}
 }

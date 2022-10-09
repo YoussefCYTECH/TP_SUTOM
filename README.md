@@ -62,7 +62,9 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 # TODO
 - [ ] Ameliorer/faire les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
-- [ ] Crypter le mot de passe dans le json
+- [ ] Chiffrer le mot de passe dans le json
 - [ ] Passer du json à une BDD postgres (optionnel ?)
 - [ ] Faire un footer commun pour toutes les pages
 - [X] Trouver un moyen de passer les variables de session entre serveurs --> On demande le user à Auth, le stocke en variable JS le temps d'une page pour le renvoyer à Score
+- [ ] Motus : n'afficher les lettres en orange que X fois, où X est le nombre de fois qu'il apparait dans le mot
+- [ ] Pas oublier de repasser le mot en aléatoire avant le rendu final (actuellement le mot est Vendredi pour tester plus rapidement)

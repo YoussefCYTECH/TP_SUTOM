@@ -21,7 +21,7 @@ app.listen(port, () => {
 session = require('express-session');
 app.set('trust proxy', 1)
 app.use(session({
-    secret: "Random",
+    secret: "jrjsdkdmq",
     saveUninitialized: true,
     resave: false
 }));
@@ -30,12 +30,21 @@ app.use(session({
 
 // Fonctions de redirections :
 app.use('/session', (req, res) => {
-    res.send("session variables : " + JSON.stringify(session))
+    if (typeof session === 'undefined'){res.send("session detruite")}
+    else{res.send("session variables : " + JSON.stringify(session))}
 })
 
-app.use('/get_user', (req, res) => { res.send({ user: session.user }) })
+app.use('/get_user', (req, res) => {
+    if (typeof session === 'undefined' || typeof session.user === 'undefined' ) {
+        res.send()
+    }
+    else {
+        res.send({ user: session.user })
+    }
+})
 app.use('/logout', (req, res) => {
-    session = null
+    delete session
+    console.log('Logged out')
     res.redirect('http://localhost:3000/login');
 })
 
@@ -52,9 +61,9 @@ app.use('/check_login', (req, res) => {
 
         //2 : verifier le password
         if (json[req.body.user].password == req.body.password) {
-            console.log("Password correct")
             session.user = req.body.user;
 
+            console.log('logged in')
             res.send({ user: session.user })
         }
         else {
