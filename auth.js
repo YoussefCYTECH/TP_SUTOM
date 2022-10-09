@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3002
 const { readFileSync, promises: fsPromises } = require('fs')
+session = require('express-session');
 var fs = require('fs')
 
 
@@ -18,7 +19,6 @@ app.listen(port, () => {
 })
 
 
-session = require('express-session');
 app.set('trust proxy', 1)
 app.use(session({
     secret: "jrjsdkdmq",
@@ -30,12 +30,13 @@ app.use(session({
 
 // Fonctions de redirections :
 app.use('/session', (req, res) => {
-    if (typeof session === 'undefined'){res.send("session detruite")}
-    else{res.send("session variables : " + JSON.stringify(session))}
+    if (typeof session === 'undefined') { res.send("session detruite") }
+    else { res.send("session variables : " + JSON.stringify(session)) }
 })
 
+// Retourne le nom de l'utilisateur connecté :
 app.use('/get_user', (req, res) => {
-    if (typeof session === 'undefined' || typeof session.user === 'undefined' ) {
+    if (typeof session === 'undefined' || typeof session.user === 'undefined') {
         res.send()
     }
     else {
@@ -48,10 +49,38 @@ app.use('/logout', (req, res) => {
     res.redirect('http://localhost:3000/login');
 })
 
+// Return true if the 2 dates are the same, regardless of the time of the day
+function sameDate(date1, date2) {
+    date1 = new Date(date1)
+    date2 = new Date(date2)
+
+    if (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    ) { return true }
+    else { return false }
+}
+
+// Retourne vrai si le joueur a deja joué aujourd'hui
+app.use('/has_played', (req, res) => {
+
+    const d = new Date().toLocaleDateString("en");//Date courante
+    var json = JSON.parse(readFileSync('data/user.json').toString());
+    last_game = new Date(json[session.user].last_game).toLocaleDateString("en")
+
+    if (sameDate(d, last_game)) {
+        res.send({ has_played: true })
+    }
+    else { //Si il a jamais joué, il rentrera aussi dans le else. Par défaut la date est mise à ""
+        res.send({ has_played: false })
+    }
+})
+
 
 
 const { createHash } = require('crypto');
-function hash(string) {return createHash('sha256').update(string).digest('hex');}
+function hash(string) { return createHash('sha256').update(string).digest('hex'); }
 
 app.use('/check_login', (req, res) => {
     var json = JSON.parse(readFileSync('data/user.json').toString());
@@ -84,7 +113,7 @@ app.use('/register', (req, res) => {
     //1 : Verifier si le user existe pas deja
     if (!json.hasOwnProperty(req.body.user)) {
 
-        json[req.body.user] = { password: hash(req.body.password) };
+        json[req.body.user] = { password: hash(req.body.password), last_game: "" };
         fs.writeFile("data/user.json", JSON.stringify(json, null, '\t'), function (err) {
             if (err) {
                 console.log(err);

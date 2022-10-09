@@ -18,9 +18,9 @@ app.listen(port, () => {
 })
 
 
-// Fonctions de redirections :
 
 
+// Recoit le nom du user connecté et le nombre d'essais pour gagner
 app.use('/win_game', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
@@ -28,10 +28,8 @@ app.use('/win_game', (req, res) => {
     if (!json[req.body.user]) {
         json[req.body.user] = { score: 0, average_tries: 0 };
     }
-
     json[req.body.user].score = json[req.body.user].score + 1
     json[req.body.user].average_tries = (json[req.body.user].average_tries * (json[req.body.user].score - 1) + parseInt(req.body.attempts)) / json[req.body.user].score
-
 
     fs.writeFile("data/score.json", JSON.stringify(json, null, '\t'), function (err) {
         if (err) {
@@ -39,7 +37,17 @@ app.use('/win_game', (req, res) => {
         }
     });
 
-    res.redirect('')
+    //On met aussi à jour la date de la derniere partie
+    const d = new Date().toLocaleDateString("en");
+    var json_user = JSON.parse(readFileSync('data/user.json').toString());
+    json_user[req.body.user].last_game = d
+
+    fs.writeFile("data/user.json", JSON.stringify(json_user, null, '\t'), function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
     res.send("ok")
 })
 

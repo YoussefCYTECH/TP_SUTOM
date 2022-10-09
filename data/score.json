@@ -1,10 +1,10 @@
 {
 	"Youssef": {
-		"score": 2,
-		"average_tries": 2
+		"score": 3,
+		"average_tries": 1.6666666666666667
 	},
 	"a": {
-		"score": 1,
-		"average_tries": 1
+		"score": 10,
+		"average_tries": 1.1
 	}
 }

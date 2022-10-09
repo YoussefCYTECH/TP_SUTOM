@@ -11,42 +11,17 @@ app.use(express.static("www"))
 app.use('/', express.static('static'));
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(port, () => {
-    console.log(`MOTUS main API listening on port ${port}`)
-})
+app.listen(port, () => {console.log(`MOTUS main API listening on port ${port}`)})
 app.get('/proxy', (req, res) => {
     out = 'MOTUS APP working on port ' + port;
     res.send(out);
 })
 
+
+// Redirections :
 app.get('/', (req, res) => {res.redirect('motus.html')})
-
-
-// Les verifications du login sont faites sur le html. On pourrait le mettre ici
-//si on trouve un moyen de passer les vars de session de Auth directement ici
-/*
-var session = require('express-session');
-app.set('trust proxy', 1)
-app.use(session({
-    secret: "Random",
-    saveUninitialized: true,
-    resave: false
-}));*/
-
-
-app.use('/login', (req, res) => {
-    /*if (req.session!= null){
-        res.redirect('/')
-    }*/
-    res.redirect('login.html')
-});
-app.use('/register', (req, res) => {
-    /*if (req.session!= null){
-        res.redirect('/')
-    }*/
-    res.redirect('register.html')
-})
-
+app.use('/login', (req, res) => {res.redirect('login.html')});
+app.use('/register', (req, res) => {res.redirect('register.html')})
 app.use('/score', (req, res) => {res.redirect('score.html')})
 
 

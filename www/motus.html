@@ -33,7 +33,7 @@
                     id="begin_letter"></span></label><br>
 
             <input style="text-transform: uppercase;" id="response" /><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" id="submit">
         </form>
 
         <!--Affichage des mots bien placés :-->
@@ -61,6 +61,21 @@
         }
     });
 
+    // Verification qu'il n'ait pas deja joué
+    if (typeof user_local != 'undefined') {
+        $.ajax({
+            url: "http://localhost:3002/has_played",
+            type: "GET",
+            success: function (data) {
+                if (data.has_played) {
+                    document.getElementById('response').setAttribute('disabled', '')
+                    document.getElementById('submit').setAttribute('disabled', '')
+                    document.getElementById('progress').innerHTML = "<br>YOU ALREADY PLAYED TODAY, PLEASE COME BACK TOMORROW"
+                    document.getElementById('progress').style = "color: yellow"
+                }
+            }
+        });
+    }
 
 
     // Gestion du jeu de MOTUS
@@ -115,7 +130,6 @@
         if (found) {
             alert('You have found the word of the day ! Attempts : ' + attempts);
 
-
             // Appel de l'API score
             $.ajax({
                 url: "http://localhost:3001/win_game",
@@ -125,7 +139,8 @@
                     'attempts': attempts
                 },
                 success: function (data) {
-                    console.log("Score updated");
+                    document.getElementById('submit').setAttribute('disabled', '')
+                    document.getElementById('response').setAttribute('disabled', '')//Empeche le joueur de rejouer
                 }
             })
         }
