@@ -38,6 +38,8 @@
             <br><br><span id="response" style="color: red"></span>
         </div>
     </div>
+
+    <div id="includedContent"></div>
 </body>
 
 <script>
@@ -102,6 +104,10 @@
         return false;
     }
 
+    $(function () {
+        $("#includedContent").load("footer.html");
+    });
+    
 </script>
 
 </html>

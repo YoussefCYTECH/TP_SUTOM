@@ -7,7 +7,7 @@ RULES coming ..
 
  ## How to USE
  
- use with standard node command
+ use with standard node command on separate terminals
  
  ```
  node index.js
@@ -68,10 +68,8 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - [ ] Ameliorer/faire les visuels
 - [ ] Passer le fichier js jquery dans static (ou module)
 - [ ] Passer du json à une BDD postgres (optionnel ? Si on a le temps mais on dirait pas)
-- [ ] Faire un footer commun pour toutes les pages (avec nos noms par exemple)
 - [X] Trouver un moyen de passer les variables de session entre serveurs --> On demande le user à Auth, le stocke en variable JS le temps d'une page pour le renvoyer à Score
 - [ ] Motus : n'afficher les lettres en orange que X fois, où X est le nombre de fois qu'il apparait dans le mot
 - [ ] Pas oublier de repasser le mot en aléatoire avant le rendu final (actuellement le mot est Vendredi pour tester plus rapidement)
 - [ ] Chiffrer le mot de passe coté html avant l'envoi pour plus de sécurité
-- [ ] Empecher le joueur de rejouer un jour où il a deja gagné
 - [ ] Rattraper le TP4 oAuth2 obligatoire pour le rendu ? (à demander au prof)

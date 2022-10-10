@@ -47,6 +47,8 @@
         <br>
         Average attempts : <span id="average"></span>
     </div>
+
+    <div id="includedContent"></div>
 </body>
 
 <script>
@@ -84,7 +86,10 @@
             }
         })
     }
-
+    
+    $(function(){
+      $("#includedContent").load("footer.html"); 
+    });
 </script>
 
 </html>

@@ -37,6 +37,8 @@
     </div>
 </body>
 
+<div id="includedContent"></div>
+
 <script>
     // Verification si l'utilisateur est connecté
     $.ajax({
@@ -49,6 +51,11 @@
             }
         }
     });
+
+    $(function(){
+      $("#includedContent").load("footer.html"); 
+    });
+
 
     //TODO chiffrement
     // On envoie les données à l'API Auth qui vérifie si ca correspond bien

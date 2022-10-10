@@ -49,6 +49,10 @@ app.use('/logout', (req, res) => {
     res.redirect('http://localhost:3000/login');
 })
 
+
+
+
+
 // Return true if the 2 dates are the same, regardless of the time of the day
 function sameDate(date1, date2) {
     date1 = new Date(date1)

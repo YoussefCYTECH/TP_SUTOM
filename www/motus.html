@@ -40,7 +40,7 @@
         <span id="progress"></span>
     </div>
 
-
+    <div id="includedContent"></div>
 </body>
 
 <script>
@@ -152,7 +152,9 @@
 
     $("#response").focus()
 
-
+    $(function () {
+        $("#includedContent").load("footer.html");
+    });
 
 </script>
 
