@@ -6,12 +6,24 @@ const { readFileSync, promises: fsPromises } = require('fs');
 const app = express()
 const port = process.env.PORT || 3000
 
+const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+const { createLogger, transports } = require("winston");
+const LokiTransport = require("winston-loki");
+const options = {
+    transports: [
+        new LokiTransport({
+            host: loki_uri
+        })
+    ]
+};
+//logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'user': username } })
+
 
 app.use(express.static("www"))
 app.use('/', express.static('static'));
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(port, () => {console.log(`MOTUS main API listening on port ${port}`)})
+app.listen(port, () => { console.log(`MOTUS main API listening on port ${port}`) })
 app.get('/proxy', (req, res) => {
     out = 'MOTUS APP working on port ' + port;
     res.send(out);
@@ -19,10 +31,10 @@ app.get('/proxy', (req, res) => {
 
 
 // Redirections :
-app.get('/', (req, res) => {res.redirect('motus.html')})
-app.use('/login', (req, res) => {res.redirect('login.html')});
-app.use('/register', (req, res) => {res.redirect('register.html')})
-app.use('/score', (req, res) => {res.redirect('score.html')})
+app.get('/', (req, res) => { res.redirect('motus.html') })
+app.use('/login', (req, res) => { res.redirect('login.html') });
+app.use('/register', (req, res) => { res.redirect('register.html') })
+app.use('/score', (req, res) => { res.redirect('score.html') })
 
 
 //Pour le mot aléatoire :

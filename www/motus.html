@@ -54,6 +54,8 @@
         success: function (data) {
             if (data.user == null) {
                 alert('Please log in first');
+
+                
                 window.location.href = "http://localhost:3000/login.html";
             }
             document.getElementById('user').innerHTML = data.user

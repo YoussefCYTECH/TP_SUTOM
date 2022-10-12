@@ -9,6 +9,7 @@ var fs = require('fs')
 app.use(express.static("www"))
 app.use('/', express.static('static'));
 app.use(express.urlencoded({ extended: false }));
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     next()
@@ -131,4 +132,9 @@ app.use('/register', (req, res) => {
     else {
         res.send({ status: 'fail', err: 'This username already exists, please try again' });
     }
+})
+
+app.use('/authorize', (req, res) => {
+
+
 })
