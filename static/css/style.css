@@ -11,7 +11,7 @@ body{
 }
 
 .logout{
-    background-color: red; border-radius: 4 px; opacity: 0.8; size: 20 px;
+    background-color: red; border-radius: 6 px; opacity: 0.8; size: 20 px;
 }
 
 #gameContainer{
