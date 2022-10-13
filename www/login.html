@@ -8,24 +8,22 @@
 
 </head>
 
-<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
+<body style="font-size:45px; background-color: #62b6e1; color: white;">
     <div class="container" style="text-align: center;">
-        <div class="row">
-            <div class="column">
-                <h1>LOGIN</h1>
-            </div>
+        <div class="row" style="background-color: #da4646; border-radius: 20px;">
+            <h1>LOGIN</h1>
         </div>
-
+        <br/>
         <div class="row">
             <form id="input" onsubmit="return submit_response()">
 
                 <label>Username :</label>
-                <input type="text" id="user" placeholder="Username" maxlength="20" required> </input><br>
-
+                <input type="text" id="user" placeholder="Username" maxlength="20" style="height:25px; border-radius: 5px;" required> </input><br>
+                <br/>
                 <label>Password :</label>
-                <input type="password" id="password" required></input><br>
-
-                <input type="submit" value="Submit" style="width: 10%">
+                <input type="password" id="password" placeholder = "Password" style="height:25px; border-radius: 5px;" required></input><br>
+                <br/>
+                <input type="submit" value="Submit" style="width: 20%;height:30px;background-color: #e4ca27;color:white; border-radius: 10px; border: 4px solid #af9b1c">
             </form>
         </div>
 

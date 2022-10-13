@@ -55,7 +55,7 @@
             if (data.user == null) {
                 alert('Please log in first');
 
-                
+
                 window.location.href = "http://localhost:8080/login.html";
             }
             document.getElementById('user').innerHTML = data.user
@@ -104,25 +104,60 @@
         if (response.length != word.length) {
             alert("Incorrect word length")
         }
+        // Dictionary to handle green and orange letters repetitions
+        var dicWord = new Map();
+        // Building the dictionary
+        for (i = 0; i < word.length; i++) {
+            s = word[i]
+            if (dicWord.has(s)) {
+                dicWord.set(s, parseInt(dicWord.get(s)) + 1);
+            }
+            else {
+                dicWord.set(s, 1);
+            }
+        }
 
+        // List of spans that will be joined to make response_analysis
+        var spanList = new Array(word.length);
         response_analysis = ""
         var found = true; //Used to know when to end the game
 
+        // Finding the green letters
+        for (i = 0; i < word.length; i++) {
+            letter = response[i]
+            if (letter == word[i]) {
+                spanList[i] = getSpan(letter, 'palegreen');
+                dicWord.set(letter, parseInt(dicWord.get(letter)) - 1);
+            }
+        }
+        
+        // adding the orange and gray letters to the list of spans
         for (i = 0; i < word.length; i++) {
             letter = response[i]
 
-            if (letter == word[i]) {
-                response_analysis += getSpan(letter, 'palegreen')
-            }
-            else if (word.split('').includes(letter)) {
+            if (letter != word[i]) {
+                if (word.split('').includes(letter)) {
+                    if (parseInt(dicWord.get(letter)) > 0) {
+                        spanList[i] = getSpan(letter, 'orange');
+                        dicWord.set(letter, parseInt(dicWord.get(letter)) - 1);
+
+                    }
+                    else {
+                        spanList[i] = getSpan(letter, 'none');
+                    }
+                }
+
+                else {
+                    spanList[i] = getSpan(letter, 'none');
+                }
                 found = false;
-                response_analysis += getSpan(letter, 'orange')
-            }
-            else {
-                found = false;
-                response_analysis += getSpan(letter, 'none')
             }
         }
+        
+
+        response_analysis = spanList.join("");
+
+    
         $("#progress").append(response_analysis + "<br />")
         $("#response").val('')
         $("#response").focus()
@@ -147,6 +182,7 @@
             })
         }
     }
+
 
     function getSpan(letter, color) {
         return `<span style="background-color:${color}">${letter.toUpperCase()}&nbsp</span>`
