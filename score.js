@@ -4,6 +4,17 @@ const port = 8082
 const { readFileSync, promises: fsPromises } = require('fs')
 var fs = require('fs')
 
+const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+const { createLogger, transports } = require("winston");
+const LokiTransport = require("winston-loki");
+const options = {
+    transports: [
+        new LokiTransport({
+            host: loki_uri
+        })
+    ]
+};
+const logger = createLogger(options);
 
 app.use(express.static("www"))
 app.use('/', express.static('static'));
@@ -22,6 +33,7 @@ app.listen(port, () => {
 
 // Recoit le nom du user connecté et le nombre d'essais pour gagner
 app.use('/win_game', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
     // Si c'est la 1ere fois qu'il joue on l'initialise
@@ -41,6 +53,8 @@ app.use('/win_game', (req, res) => {
     const d = new Date().toLocaleDateString("en");
     var json_user = JSON.parse(readFileSync('data/user.json').toString());
     json_user[req.body.user].last_game = d
+    console.log('data: ' + json_user[req.body.user].last_game)
+    console.log('user + ' + req.body.user)
 
     fs.writeFile("data/user.json", JSON.stringify(json_user, null, '\t'), function (err) {
         if (err) {

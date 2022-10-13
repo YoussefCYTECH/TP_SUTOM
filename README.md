@@ -91,7 +91,7 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - A player can win only once per day, then it is locked for him
 - Motus game : A misplaced character is displayed in orange only the number of times it appears in the word, not more
 - Leaderboard page ordered by the highest score
-
+- The player can only enter an existing word (IN PROGRESS)
 
 - Going to the login or register page while being connected redirects to the main game
 - Going to the game or score page while being unauthentified redirects to the login page
@@ -110,8 +110,11 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - [ ] NODE_ENV du docker compose pas utile ?
 - [ ] Rajouter une limite au nombre d'essais de l'utilisateur
 - [ ] Fixer le CSS du leaderboard
+- [ ] Empecher de rentrer un mot qui existe pas
+- [ ] Fix la date 
 
 
   
   Jeton jwt au lieu du code
   Grave si on y arrive pas ? Non si c'est pour mettre la priorité sur autre chose, mais si on a le temps il veut qu'on le fasse
+    Demain : DOC + MONITORING

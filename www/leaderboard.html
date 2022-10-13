@@ -26,11 +26,13 @@
 
 <body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
-        <div class="row">
-            <div class="column">
+        <div>
+            <div>
                 <h1>LEADERBOARD</h1>
             </div>
         </div>
+        <button onclick="document.location = 'http://localhost:8080/score'">CLICK TO SEE SCORE</button>
+        <br><br>
 
         <div class="row">
             <div class="column" style="color: red">PLAYER</div>
@@ -44,9 +46,22 @@
 
             $(function () { $("#includedContent").load("footer.html"); });
 
-            score_json.sort(function (a, b) {
-                return a.score - b.score;
-            });
+            /*  score_json.sort(function (a, b) {
+                  return a.score - b.score;
+              });*/
+
+            /*function sortByKey(jsObj) {
+                var sortedArray = [];
+
+                // Push each JSON Object entry in array by [key, value]
+                for (var i in jsObj) {
+                    sortedArray.push([i, jsObj[i]]);
+                }
+
+                // Run native sort function and returns sorted array.
+                return sortedArray.sort();
+            }*/
+
 
             // Demande les infos du leaderboard
             var score_json
@@ -59,6 +74,7 @@
                     score_json = data
                 }
             });
+            //score_json=sortByKey(score_json)
 
             for (var key in score_json) {
                 console.log("Score of " + key + " -> " + score_json[key].score);
