@@ -4,7 +4,7 @@ const seedrandom = require('seedrandom');
 const date = new Date;
 const { readFileSync, promises: fsPromises } = require('fs');
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 
 const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
 const { createLogger, transports } = require("winston");

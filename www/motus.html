@@ -18,11 +18,11 @@
     <div style="text-align: right">
         Hello, <span id="user" style="color: yellow"></span>
 
-        <button onclick="window.location.href = 'http://localhost:3002/logout'" class="logout">Logout</button>
+        <button onclick="window.location.href = 'http://localhost:8081/logout'" class="logout">Logout</button>
     </div>
 
     <br>
-    <button onclick="document.location = 'http://localhost:3000/score'">CLICK TO SEE SCORE</button>
+    <button onclick="document.location = 'http://localhost:8080/score'">CLICK TO SEE SCORE</button>
     <br><br>
 
 
@@ -48,7 +48,7 @@
     // Verification si l'utilisateur est connecté
     var user_local
     $.ajax({
-        url: "http://localhost:3002/get_user",
+        url: "http://localhost:8081/get_user",
         type: "GET",
         async: false,
         success: function (data) {
@@ -56,7 +56,7 @@
                 alert('Please log in first');
 
                 
-                window.location.href = "http://localhost:3000/login.html";
+                window.location.href = "http://localhost:8080/login.html";
             }
             document.getElementById('user').innerHTML = data.user
             user_local = data.user
@@ -66,7 +66,7 @@
     // Verification qu'il n'ait pas deja joué
     if (typeof user_local != 'undefined') {
         $.ajax({
-            url: "http://localhost:3002/has_played",
+            url: "http://localhost:8081/has_played",
             type: "GET",
             success: function (data) {
                 if (data.has_played) {
@@ -134,7 +134,7 @@
 
             // Appel de l'API score
             $.ajax({
-                url: "http://localhost:3001/win_game",
+                url: "http://localhost:5432/win_game",
                 type: "POST",
                 data: {
                     'user': user_local,

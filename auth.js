@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3002
+const port = 8081
 const { readFileSync, promises: fsPromises } = require('fs')
 session = require('express-session');
 var fs = require('fs')
@@ -47,7 +47,7 @@ app.use('/get_user', (req, res) => {
 app.use('/logout', (req, res) => {
     delete session
     console.log('Logged out')
-    res.redirect('http://localhost:3000/login');
+    res.redirect('http://localhost:8080/login');
 })
 
 

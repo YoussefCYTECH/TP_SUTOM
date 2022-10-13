@@ -2,7 +2,11 @@ version: "3.7"
 
 services:
   score_service:
-    image: score
+    build:
+        context: .
+        args:
+            - NODE_ENV=local
+        dockerfile: Dockerfile.score
     ports:
       - "5432:5432"
     restart: always
@@ -10,13 +14,21 @@ services:
       - index_service
 
   index_service:
-    image: index
+    build:
+        context: .
+        args:
+            - NODE_ENV=local
+        dockerfile: Dockerfile.index
     ports:
       - "8080:8080"
     restart: always
 
   auth_service:
-    image: auth
+    build:
+        context: .
+        args:
+            - NODE_ENV=local
+        dockerfile: Dockerfile.auth
     ports:
       - "8081:8081"
     restart: always
@@ -29,8 +41,8 @@ services:
     ports:
       - 4000:4000
     restart: unless-stopped
-    networks:
-      - monitor-net
+    #networks:
+    #  - monitor-net
 
   loki:
     image: grafana/loki
@@ -38,8 +50,8 @@ services:
     ports:
       - 4100:4100
     restart: unless-stopped
-    networks:
-      - monitor-net
+    #networks:
+    #  - monitor-net
 
   prometheus:
     image: prom/prometheus
@@ -53,5 +65,5 @@ services:
       - 9090
     ports:
       - 9090:9090
-    networks:
-      - monitor-net
+    #networks:
+    #  - monitor-net
