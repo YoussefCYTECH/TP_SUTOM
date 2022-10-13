@@ -16,7 +16,7 @@ const options = {
         })
     ]
 };
-//logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'user': username } })
+const logger =createLogger(options);
 
 
 app.use(express.static("www"))
@@ -45,6 +45,7 @@ function random_item(items) {
 }
 
 app.get('/word', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day'} })
 
     const d = new Date();
     let day = d.getDay();

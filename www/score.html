@@ -75,7 +75,7 @@
     // On demande le score du user à l'API Score
     if (typeof user_local != 'undefined') {
         $.ajax({
-            url: "http://localhost:5432/print_score",
+            url: "http://localhost:8082/print_score",
             type: "POST",
             data: {
                 'user': user_local
