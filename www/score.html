@@ -37,6 +37,10 @@
             style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
             PLAY</button>
 
+        <button onclick="document.location='http://localhost:8082/leaderboard.html'"
+            style=" border-radius: 4 px; opacity: 0.8; width: 30%">
+            LEADERBOARD</button>
+
 
         <div class="row">
             You guessed <span id="score" style="color: red"></span>
@@ -86,9 +90,9 @@
             }
         })
     }
-    
-    $(function(){
-      $("#includedContent").load("footer.html"); 
+
+    $(function () {
+        $("#includedContent").load("footer.html");
     });
 </script>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>SUTOM - Leaderboard</title>
+    <!-- Jquery -->
+    <script src="/jquery-3.6.0.js"></script>
+
+    <style>
+        .column {
+            float: left;
+            text-align: center;
+            width: 25%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+
+
+</head>
+
+<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
+    <div class="container" style="text-align: center;">
+        <div class="row">
+            <div class="column">
+                <h1>LEADERBOARD</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column" style="color: red">PLAYER</div>
+            <div class="column" style="color: red">SCORE</div>
+            <div class="column" style="color: red">AVERAGE TRIES</div>
+        </div>
+
+        <script>
+            // Fonction pour arrondir à X decimales près
+            function round(value, decimals) { return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals); }
+
+            $(function () { $("#includedContent").load("footer.html"); });
+
+            score_json.sort(function (a, b) {
+                return a.score - b.score;
+            });
+
+            // Demande les infos du leaderboard
+            var score_json
+            $.ajax({
+                url: "http://localhost:8082/get_leaderboard",
+                type: "GET",
+                async: false,
+                success: function (data) {
+                    console.log(data)
+                    score_json = data
+                }
+            });
+
+            for (var key in score_json) {
+                console.log("Score of " + key + " -> " + score_json[key].score);
+                document.write('<div class="row"> <div class="column">' + key + '</div><div class="column">' + score_json[key].score + '</div><div class="column">' + round(score_json[key].average_tries, 2) + '</div></div>')
+
+            }
+        </script>
+
+
+    </div>
+
+    <div id="includedContent"></div>
+</body>
+
+</html>

@@ -63,3 +63,9 @@ app.use('/print_score', (req, res) => {
 
     res.send({ score, average })
 })
+
+
+app.use('/get_leaderboard', (req, res) => {
+    var json = JSON.parse(readFileSync('data/score.json').toString());
+    res.send(json)
+})

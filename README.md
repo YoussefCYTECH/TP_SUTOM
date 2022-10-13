@@ -86,23 +86,30 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 
 ## List of functionalities
 - Motus main game
+- Functional login and register system
+- The player's score and average guess attempts is registered
+- A player can win only once per day, then it is locked for him
+- Motus game : A misplaced character is displayed in orange only the number of times it appears in the word, not more
+- Leaderboard page ordered by the highest score
 
-- Going
+
+- Going to the login or register page while being connected redirects to the main game
+- Going to the game or score page while being unauthentified redirects to the login page
 
 # TODO
 - [ ] Ameliorer/faire les visuels
-- [ ] Passer le fichier js jquery dans static (ou module)
 - [X] Trouver un moyen de passer les variables de session entre serveurs --> On demande le user à Auth, le stocke en variable JS le temps d'une page pour le renvoyer à Score
 - [X] Motus : n'afficher les lettres en orange que X fois, où X est le nombre de fois qu'il apparait dans le mot
 - [ ] Pas oublier de repasser le mot en aléatoire avant le rendu final (actuellement le mot est Vendredi pour tester plus rapidement)
 - [ ] Chiffrer le mot de passe coté html avant l'envoi pour plus de sécurité
 - [ ] Rattraper le TP4 oAuth2 obligatoire pour le rendu ? (à demander au prof)
-- [ ] Mettre à jour le diagramme de sequence avec l'API auth
-- [ ] CHANGER LES PORTS
-- [ ] METTRE DES LOGS pour les erreurs
-- [ ] DOCUMENTE
-- [ ] Leaderboard
+- [ ] METTRE DES LOGS
+- [ ] DOCUMENTER
+- [ ] Leaderboard (en cours)
 - [ ] Expliquer en quoi c'est du microservices, et leurs relations
+- [ ] NODE_ENV du docker compose pas utile ?
+- [ ] Rajouter une limite au nombre d'essais de l'utilisateur
+- [ ] Fixer le CSS du leaderboard
 
 
   
