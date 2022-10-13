@@ -15,7 +15,7 @@ RULES coming ..
  node auth.js
  ```
 
-then go to http://localhost:3000
+then go to http://localhost:8080
 
 ## Dependencies
 --> A verifier si un nouveau pc a besoin de les installer ou si elles sont installees dans les dossiers du site
@@ -42,7 +42,7 @@ A nodeJS server, separate from the Motus API
 
 
 - Which port are you gone use ?\
-The port 3001
+The port 5432
 
 
 - Which API are you gone call ? which parameters ?\
@@ -60,9 +60,9 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 'password'
 
 ## List of API
-- Motus API, port 3000 : main API managing the game
-- Score API, port 3001 : API updating and sending the score of the user
-- Auth API, port 3002 : API managing the user's logging process
+- Motus API, port 8080 : main API managing the game
+- Score API, port 5432 : API updating and sending the score of the user
+- Auth API, port 8081 : API managing the user's logging process
 
 # TODO
 - [ ] Ameliorer/faire les visuels

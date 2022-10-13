@@ -27,13 +27,13 @@
             <div style="text-align: right">
                 Hello, <span id="user" style="color: yellow"></span>
 
-                <button onclick="window.location.href = 'http://localhost:3002/logout'" class="logout"
+                <button onclick="window.location.href = 'http://localhost:8081/logout'" class="logout"
                     style="background-color: red; border-radius: 4 px; opacity: 0.8; size: 20 px;">
                     Logout</button>
             </div>
         </div>
 
-        <button onclick="document.location='http://localhost:3000/motus.html'"
+        <button onclick="document.location='http://localhost:8080/motus.html'"
             style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
             PLAY</button>
 
@@ -56,13 +56,13 @@
     // Verification si l'utilisateur est connecté
     var user_local
     $.ajax({
-        url: "http://localhost:3002/get_user",
+        url: "http://localhost:8081/get_user",
         type: "GET",
         async: false,
         success: function (data) {
             if (data.user == null) {
                 alert('Please log in first');
-                window.location.href = "http://localhost:3000/login.html";
+                window.location.href = "http://localhost:8080/login.html";
             }
             document.getElementById('user').innerHTML = data.user
             user_local = data.user
@@ -75,7 +75,7 @@
     // On demande le score du user à l'API Score
     if (typeof user_local != 'undefined') {
         $.ajax({
-            url: "http://localhost:3001/print_score",
+            url: "http://localhost:5432/print_score",
             type: "POST",
             data: {
                 'user': user_local

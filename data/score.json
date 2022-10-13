@@ -6,5 +6,9 @@
 	"a": {
 		"score": 11,
 		"average_tries": 1.0909090909090908
+	},
+	"rose": {
+		"score": 1,
+		"average_tries": 1
 	}
 }
