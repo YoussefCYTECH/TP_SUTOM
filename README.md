@@ -81,7 +81,7 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - Functional login and register system (maximum username's length allowed is 20 characters)
 - The player's score and average guess attempts is registered
   
-- A player can win only once per day, then it is locked for him
+- A player can win or lose only once per day, then it is locked for him. The maximum tries allowed is set to max_attempts = 6 in motus.html
 - Motus game : A misplaced character is displayed in orange only the number of times it appears in the word, not more
 - Leaderboard page ordered by the highest score
 - The player can only enter an existing word (IN PROGRESS)
@@ -97,9 +97,9 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - [X] Leaderboard trié par score
 - [ ] Expliquer en quoi c'est du microservices, et leurs relations
 - [ ] NODE_ENV du docker compose pas utile ?
-- [ ] Rajouter une limite au nombre d'essais de l'utilisateur
+- [ ] Rajouter une limite au nombre d'essais de l'utilisateur (EN COURS)
 - [ ] Fixer le CSS du leaderboard
-- [ ] Empecher de rentrer un mot qui existe pas
+- [ ] Empecher de rentrer un mot qui existe pas (EN COURS)
 - [ ] Fix la date 
 
 
