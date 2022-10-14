@@ -77,7 +77,7 @@
                 if (data.has_played) {
                     document.getElementById('response').setAttribute('disabled', '')
                     document.getElementById('submit').setAttribute('disabled', '')
-                    $("#progress").append("<br>YOU ALREADY PLAYED TODAY, PLEASE COME BACK TOMORROW")
+                    $("#progress").append("<br>VOUS AVEZ DEJA JOUE AUJOURD'HUI, MERCI DE REVENIR DEMAIN")
                     document.getElementById('progress').style = "color: yellow"
                 }
             }
@@ -108,7 +108,7 @@
     function submit_response() {
         response = $("#response").val().toUpperCase()
         if (response.length != word.length) {
-            alert("Incorrect word length")
+            alert("Longueur invalide")
         }
         // Dictionary to handle green and orange letters repetitions
         var dicWord = new Map();
@@ -169,11 +169,11 @@
         $("#response").focus()
         attempts++;
 
-        document.getElementById('tries_left').innerHTML='Remaining attempts : ' + (max_attempts - attempts)
+        document.getElementById('tries_left').innerHTML='Essais restants : ' + (max_attempts - attempts)
 
         // Si l'utilisateur a gagné :
         if (found) {
-            alert('You have found the word of the day ! Attempts : ' + attempts);
+            alert('Vous avez trouvé le mot du jour ! Essais restants : ' + attempts);
 
             // Appel de l'API score
             $.ajax({
@@ -203,7 +203,7 @@
                     success: function (data) {
                         document.getElementById('submit').setAttribute('disabled', '')
                         document.getElementById('response').setAttribute('disabled', '')
-                        $("#progress").append("<br><span style='color: yellow'>GAME OVER</span> : YOU REACHED THE MAXIMUM TRIES ALLOWED, PLEASE COME BACK TOMORROW")
+                        $("#progress").append("<br><span style='color: yellow'>GAME OVER</span> : VOUS AVEZ ATTEINT LE NOMBRE D'ESSAIS MAXIMAL, MERCI DE REVENIR DEMAIN")
                     }
                 })
             }
