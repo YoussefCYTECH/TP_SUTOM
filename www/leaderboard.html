@@ -31,7 +31,9 @@
                 <h1>LEADERBOARD</h1>
             </div>
         </div>
-        <button onclick="document.location = 'http://localhost:8080/score'">CLICK TO SEE SCORE</button>
+        <button onclick="document.location='http://localhost:8080/motus.html'"
+            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
+            PLAY</button>
         <br><br>
 
         <div class="row">
@@ -46,22 +48,6 @@
 
             $(function () { $("#includedContent").load("footer.html"); });
 
-            /*  score_json.sort(function (a, b) {
-                  return a.score - b.score;
-              });*/
-
-            /*function sortByKey(jsObj) {
-                var sortedArray = [];
-
-                // Push each JSON Object entry in array by [key, value]
-                for (var i in jsObj) {
-                    sortedArray.push([i, jsObj[i]]);
-                }
-
-                // Run native sort function and returns sorted array.
-                return sortedArray.sort();
-            }*/
-
 
             // Demande les infos du leaderboard
             var score_json
@@ -70,17 +56,21 @@
                 type: "GET",
                 async: false,
                 success: function (data) {
-                    console.log(data)
                     score_json = data
                 }
             });
-            //score_json=sortByKey(score_json)
 
-            for (var key in score_json) {
-                console.log("Score of " + key + " -> " + score_json[key].score);
-                document.write('<div class="row"> <div class="column">' + key + '</div><div class="column">' + score_json[key].score + '</div><div class="column">' + round(score_json[key].average_tries, 2) + '</div></div>')
+            // Sort the array based on the score element :
+            var items = Object.keys(score_json).map(function (key) {
+                return [key, score_json[key].score, score_json[key].average_tries];
+            });
+            items.sort(function (first, second) {
+                return second[1] - first[1];
+            });
 
-            }
+            items.forEach(elt => {
+                document.write('<div class="row"> <div class="column">' + elt[0] + '</div><div class="column">' + elt[1] + '</div><div class="column">' + round(elt[2], 2) + '</div></div>')
+            });
         </script>
 
 

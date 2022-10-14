@@ -33,7 +33,7 @@ app.listen(port, () => {
 
 // Recoit le nom du user connecté et le nombre d'essais pour gagner
 app.use('/win_game', (req, res) => {
-    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
+    //logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
     // Si c'est la 1ere fois qu'il joue on l'initialise
@@ -71,11 +71,14 @@ app.use('/print_score', (req, res) => {
     if (!json[req.body.user]) {
         res.send({ score: 0, average: 0 })
     }
+    else {
 
-    score = json[req.body.user].score
-    average = json[req.body.user].average_tries
 
-    res.send({ score, average })
+        score = json[req.body.user].score
+        average = json[req.body.user].average_tries
+
+        res.send({ score, average })
+    }
 })
 
 

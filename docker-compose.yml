@@ -4,8 +4,6 @@ services:
   score_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
         dockerfile: Dockerfile.score
     ports:
       - "8082:8082"
@@ -16,10 +14,8 @@ services:
   index_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
         #environment:
-       #   - LOKI=http://loki:4100/
+        #  - LOKI="http://loki:4100/"
         dockerfile: Dockerfile.index
     ports:
       - "8080:8080"
@@ -28,8 +24,6 @@ services:
   auth_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
         dockerfile: Dockerfile.auth
     ports:
       - "8081:8081"

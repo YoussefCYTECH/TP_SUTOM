@@ -79,7 +79,7 @@ function sameDate(date1, date2) {
     else { return false }
 }
 
-// Retourne vrai si le joueur a deja joué aujourd'hui
+// Retourne le boolean vrai si le joueur a deja joué aujourd'hui, faux sinon
 app.use('/has_played', (req, res) => {
 
     const d = new Date().toLocaleDateString("en");//Date courante
