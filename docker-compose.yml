@@ -1,35 +1,50 @@
 version: "3.7"
 
+volumes:
+  web_data:
+
 services:
   score_service:
     build:
         context: .
+        args:
+            - NODE_ENV=local
         dockerfile: Dockerfile.score
     ports:
       - "8082:8082"
     restart: always
     depends_on:
       - index_service
+    volumes:
+      - ./data:/app/data
 
   index_service:
     build:
         context: .
+        args:
+            - NODE_ENV=local
         #environment:
-        #  - LOKI="http://loki:4100/"
+       #   - LOKI=http://loki:4100/
         dockerfile: Dockerfile.index
     ports:
       - "8080:8080"
     restart: always
+    volumes:
+      - ./data:/app/data
 
   auth_service:
     build:
         context: .
+        args:
+            - NODE_ENV=local
         dockerfile: Dockerfile.auth
     ports:
       - "8081:8081"
     restart: always
     depends_on:
       - index_service
+    volumes:
+      - ./data:/app/data
 
   grafana:
     image: grafana/grafana
