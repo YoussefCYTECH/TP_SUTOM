@@ -80,14 +80,30 @@
         });
     }
 
+    function readTextFile(file) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200 || rawFile.status == 0) {
+                    var allText = rawFile.responseText;
+                    alert(allText);
+                }
+            }
+        }
+        rawFile.send(null);
+    }
+
 
     // Gestion du jeu de MOTUS
     var word = "";
     var attempts = 0;
     var max_attempts = 6;
+    var words_list = []
 
     $.get("/word", function (data) {
-        word = data.trim().toUpperCase()
+        word = data.word.trim().toUpperCase()
+        words_list = data.text_array
         document.getElementById('letters_number').innerHTML = word.length;
         document.getElementById('begin_letter').innerHTML = word[0];
 
@@ -97,7 +113,13 @@
 
         $("form").on("submit", function (e) {
             e.preventDefault();
-            submit_response()
+
+            if (words_list.includes($("#response").val())){
+                submit_response()
+            }
+            else{
+                alert("Ce mot n'existe pas, merci de rentrer un mot français")
+            }
         });
     });
 
@@ -105,7 +127,10 @@
         response = $("#response").val().toUpperCase()
         if (response.length != word.length) {
             alert("Incorrect word length")
+            return
         }
+
+
         // Dictionary to handle green and orange letters repetitions
         var dicWord = new Map();
         // Building the dictionary
@@ -165,7 +190,7 @@
         $("#response").focus()
         attempts++;
 
-        document.getElementById('tries_left').innerHTML='Remaining attempts : ' + (max_attempts - attempts)
+        document.getElementById('tries_left').innerHTML = 'Remaining attempts : ' + (max_attempts - attempts)
 
         // Si l'utilisateur a gagné :
         if (found) {
