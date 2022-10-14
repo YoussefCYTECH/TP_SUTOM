@@ -19,33 +19,29 @@
 <body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
 
-        <div class="row">
-            <div class="column">
-                <h1>YOUR SCORE</h1>
-            </div>
+        <div style="width:100%;display: flex;justify-content: center;"><div>
+            <button onclick="document.location='http://localhost:8080/motus.html'"style="width:200px;left:0%;top:50%;position:relative;">JOUER</button>
 
-            <div style="text-align: right">
-                Hello, <span id="user" style="color: yellow"></span>
-
-                <button onclick="window.location.href = 'http://localhost:8081/logout'" class="logout"
-                    style="background-color: red; border-radius: 4 px; opacity: 0.8; size: 20 px;">
-                    Logout</button>
-            </div>
+            <p style="font-size: 50px;text-align: center; display: inline-block;font-style: italic;padding-left: 50px;padding-right: 50px;">MON SCORE</p>
+    
+            <button onclick="window.location.href = 'http://localhost:8081/logout'" style="width:200px;right:0%;position:relative;top:50%">SE DECONNECTER</button>
+        </div></div>
+        <br/>
+        <br/>
+        <div style="text-align: center;width:100%">
+            Salut, <span id="user" style="color: yellow"></span>
         </div>
-
-        <button onclick="document.location='http://localhost:8080/motus.html'"
-            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
-            PLAY</button>
+        <br><br>
 
 
         <div class="row">
-            You guessed <span id="score" style="color: red"></span>
-            words !
+            Tu as deviné <span id="score" style="color: red"></span>
+            mots !
 
         </div>
 
         <br>
-        Average attempts : <span id="average"></span>
+        Moyenne d'essais : <span id="average"></span>
     </div>
 
     <div id="includedContent"></div>

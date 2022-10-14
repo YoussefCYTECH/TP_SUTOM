@@ -10,30 +10,30 @@
 
 <body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
-        <div class="row">
+        <div class="row" style="background-color: white; border-radius: 20px;">
             <div class="column">
-                <h1>REGISTER</h1>
+                <h1 style="color:rgba(58, 53, 53, 0.733);">S'INSCRIRE</h1>
             </div>
         </div>
 
         <div class="row">
             <form id="input" onsubmit="return submit_response()">
 
-                <label>Username :</label>
+                <label>Nom d'utilisateur :</label>
                 <input type="text" id="user" placeholder="Username" maxlength="20" required> </input><br>
-
-                <label>Password :</label>
+                <br/>
+                <label>Mot de passe :</label>
                 <input type="password" id="password" required> </input><br>
-
-                <label>Confirm your password :</label>
+                <br/>
+                <label>Confirmez votre mot de passe :</label>
                 <input type="password" id="password_confirm" required></input><br>
+                <br/>
 
-
-                <input type="submit" value="Submit" style="width: 10%">
+                <input type="submit" value="CONFIRMER" style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">
             </form>
-
+            <br/>
             <button onclick="document.location='http://localhost:8080/login'"
-                style=" border-radius: 4 px; width: 20%">Back to LOGIN</button>
+            style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">RETOUR</button>
 
             <br><br><span id="response" style="color: red"></span>
         </div>

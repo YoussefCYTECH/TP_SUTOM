@@ -10,34 +10,38 @@
     <script src="/jquery-3.6.0.js"></script>
 </head>
 
-<body>
+<body style=" background-color: rgba(58, 53, 53, 0.733); color: white; font-size: 25px;">
+    
+    <div style="width:100%;display: flex;justify-content: center;"><div>
+        <button style="width:200px;left:0%;top:50%;position:relative;" onclick="document.location = 'http://localhost:8080/score'">MON SCORE</button>
 
-    <h1 class="title">SUTOM</h1> <br><br>
+        <p style="font-size: 50px;text-align: center; display: inline-block;font-style: italic;padding-left: 50px;padding-right: 50px;">SUTOM</p>
 
-
-    <div style="text-align: right">
-        Hello, <span id="user" style="color: yellow"></span>
-
-        <button onclick="window.location.href = 'http://localhost:8081/logout'" class="logout">Logout</button>
+        <button onclick="window.location.href = 'http://localhost:8081/logout'" style="width:200px;right:0%;position:relative;top:50%">SE DECONNECTER</button>
+    </div></div>
+    <br/>
+    <br/>
+    <div style="text-align: center;width:100%">
+        Salut, <span id="user" style="color: yellow"></span>
     </div>
-
-    <br>
-    <button onclick="document.location = 'http://localhost:8080/score'">CLICK TO SEE SCORE</button>
     <br><br>
 
 
 
-    <div id="gameContainer">
-        <form id="inputForm">
-            <label>Guess the word in <span id="letters_number"></span> letters beginning by <span
-                    id="begin_letter"></span></label><br>
+    <div id="gameContainer"
+        style="border: 3px solid white;border-radius: 10px; height:50%;width: 50%; align-items: center; margin: 0 auto;">
+        <form style="text-align: center; margin:20px" id="inputForm">
+            <label>Devine le mot en <span id="letters_number"></span> lettres commançant par <span
+                    id="begin_letter"></span></label><br /><br />
 
-            <input style="text-transform: uppercase;" id="response" /><br>
-            <input type="submit" value="Submit" id="submit">
+            <input style="text-transform: uppercase;" id="response" /><br /><br />
+            <input style="width:15%;left:0%;top:50%;position:relative;" type="submit" value="Submit" id="submit">
         </form>
-
+        <br/>
         <!--Affichage des mots bien placés :-->
         <span id="progress"></span>
+        <br/>
+        <br/>
     </div>
 
     <div id="includedContent"></div>
