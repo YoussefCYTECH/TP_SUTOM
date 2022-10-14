@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>SUTOM - Leaderboard</title>
+    <!-- Jquery -->
+    <script src="/jquery-3.6.0.js"></script>
+
+    <style>
+        .column {
+            float: left;
+            text-align: center;
+            width: 25%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+
+
+</head>
+
+<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
+    <div class="container" style="text-align: center;">
+        <div>
+            <div>
+                <h1>LEADERBOARD</h1>
+            </div>
+        </div>
+        <button onclick="document.location='http://localhost:8080/motus.html'"
+            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
+            PLAY</button>
+        <br><br>
+
+        <div class="row">
+            <div class="column" style="color: red">PLAYER</div>
+            <div class="column" style="color: red">SCORE</div>
+            <div class="column" style="color: red">AVERAGE TRIES</div>
+        </div>
+
+        <script>
+            // Fonction pour arrondir à X decimales près
+            function round(value, decimals) { return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals); }
+
+            $(function () { $("#includedContent").load("footer.html"); });
+
+
+            // Demande les infos du leaderboard
+            var score_json
+            $.ajax({
+                url: "http://localhost:8082/get_leaderboard",
+                type: "GET",
+                async: false,
+                success: function (data) {
+                    score_json = data
+                }
+            });
+
+            // Sort the array based on the score element :
+            var items = Object.keys(score_json).map(function (key) {
+                return [key, score_json[key].score, score_json[key].average_tries];
+            });
+            items.sort(function (first, second) {
+                return second[1] - first[1];
+            });
+
+            items.forEach(elt => {
+                document.write('<div class="row"> <div class="column">' + elt[0] + '</div><div class="column">' + elt[1] + '</div><div class="column">' + round(elt[2], 2) + '</div></div>')
+            });
+        </script>
+
+
+    </div>
+
+    <div id="includedContent"></div>
+</body>
+
+</html>

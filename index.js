@@ -6,7 +6,8 @@ const { readFileSync, promises: fsPromises } = require('fs');
 const app = express()
 const port = process.env.PORT || 8080
 
-const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+//const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+const loki_uri = "http://loki:4100/" || "http://127.0.0.1:4100";
 const { createLogger, transports } = require("winston");
 const LokiTransport = require("winston-loki");
 const options = {
@@ -45,7 +46,7 @@ function random_item(items) {
 }
 
 app.get('/word', (req, res) => {
-    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day'} })
+    //logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day'} })
 
     const d = new Date();
     let day = d.getDay();

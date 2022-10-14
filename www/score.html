@@ -4,13 +4,6 @@
 <head>
     <title>SUTOM - Score</title>
 
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="/google.font.css">
-    <!-- CSS Reset -->
-    <link rel="stylesheet" href="/css/normalize/8.0.1/normalize.css">
-    <!-- Milligram CSS -->
-    <link rel="stylesheet" href="/css/milligram/1.4.1/milligram.css">
-
     <!-- Jquery -->
     <script src="/jquery-3.6.0.js"></script>
 
@@ -32,6 +25,10 @@
             Salut, <span id="user" style="color: yellow"></span>
         </div>
         <br><br>
+
+        <button onclick="document.location='http://localhost:8082/leaderboard.html'"
+            style=" border-radius: 4 px; opacity: 0.8; width: 30%">
+            LEADERBOARD</button>
 
 
         <div class="row">
@@ -82,9 +79,9 @@
             }
         })
     }
-    
-    $(function(){
-      $("#includedContent").load("footer.html"); 
+
+    $(function () {
+        $("#includedContent").load("footer.html");
     });
 </script>
 

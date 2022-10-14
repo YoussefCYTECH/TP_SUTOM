@@ -6,6 +6,18 @@ session = require('express-session');
 var fs = require('fs')
 
 
+const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+const { createLogger, transports } = require("winston");
+const LokiTransport = require("winston-loki");
+const options = {
+    transports: [
+        new LokiTransport({
+            host: loki_uri
+        })
+    ]
+};
+const logger = createLogger(options);
+
 app.use(express.static("www"))
 app.use('/', express.static('static'));
 app.use(express.urlencoded({ extended: false }));
@@ -67,7 +79,7 @@ function sameDate(date1, date2) {
     else { return false }
 }
 
-// Retourne vrai si le joueur a deja joué aujourd'hui
+// Retourne le boolean vrai si le joueur a deja joué aujourd'hui, faux sinon
 app.use('/has_played', (req, res) => {
 
     const d = new Date().toLocaleDateString("en");//Date courante

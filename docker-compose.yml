@@ -1,5 +1,8 @@
 version: "3.7"
 
+volumes:
+  web_data:
+
 services:
   score_service:
     build:
@@ -12,6 +15,8 @@ services:
     restart: always
     depends_on:
       - index_service
+    volumes:
+      - ./data:/app/data
 
   index_service:
     build:
@@ -24,6 +29,8 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    volumes:
+      - ./data:/app/data
 
   auth_service:
     build:
@@ -36,6 +43,8 @@ services:
     restart: always
     depends_on:
       - index_service
+    volumes:
+      - ./data:/app/data
 
   grafana:
     image: grafana/grafana
