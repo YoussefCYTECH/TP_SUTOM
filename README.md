@@ -2,8 +2,7 @@
 
 ## Description 
 
-A french Motus app running with micro services.\
-RULES coming ..  
+A french Motus app running with micro services.\ 
 
  ## How to USE
  
@@ -23,7 +22,6 @@ To restart after some changes (for devs):
 sudo docker-compose build
 sudo docker-compose up
 ```
-
 
 then go to http://localhost:8080
 

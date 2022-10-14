@@ -29,11 +29,9 @@ app.listen(port, () => {
 })
 
 
-
-
 // Recoit le nom du user connecté et le nombre d'essais pour gagner
 app.use('/win_game', (req, res) => {
-    //logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
     // Si c'est la 1ere fois qu'il joue on l'initialise
@@ -65,7 +63,7 @@ app.use('/win_game', (req, res) => {
 
 // Recoit le nom du user connecté et doit mettre à jour la date de derniere partie dans la BDD
 app.use('/lose_game', (req, res) => {
-    //logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player lost the game' } })
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player lost the game' } })
     
     const d = new Date().toLocaleDateString("en");
     var json_user = JSON.parse(readFileSync('data/user.json').toString());
@@ -83,14 +81,13 @@ app.use('/lose_game', (req, res) => {
 
 
 app.use('/print_score', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Getting score'} })
     var json = JSON.parse(readFileSync('data/score.json').toString());
 
     if (!json[req.body.user]) {
         res.send({ score: 0, average: 0 })
     }
     else {
-
-
         score = json[req.body.user].score
         average = json[req.body.user].average_tries
 
@@ -100,6 +97,7 @@ app.use('/print_score', (req, res) => {
 
 
 app.use('/get_leaderboard', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Getting leaderboard'} })
     var json = JSON.parse(readFileSync('data/score.json').toString());
     res.send(json)
 })

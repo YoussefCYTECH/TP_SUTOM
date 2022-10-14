@@ -43,12 +43,14 @@ app.use(session({
 
 // Fonctions de redirections :
 app.use('/session', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Displaying session content'} })
     if (typeof session === 'undefined') { res.send("session detruite") }
     else { res.send("session variables : " + JSON.stringify(session)) }
 })
 
 // Retourne le nom de l'utilisateur connecté :
 app.use('/get_user', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Getting user'} })
     if (typeof session === 'undefined' || typeof session.user === 'undefined') {
         res.send()
     }
@@ -58,7 +60,7 @@ app.use('/get_user', (req, res) => {
 })
 app.use('/logout', (req, res) => {
     delete session
-    console.log('Logged out')
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Logged out'} })
     res.redirect('http://localhost:8080/login');
 })
 
@@ -81,6 +83,7 @@ function sameDate(date1, date2) {
 
 // Retourne le boolean vrai si le joueur a deja joué aujourd'hui, faux sinon
 app.use('/has_played', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Checking if user has played'} })
 
     const d = new Date().toLocaleDateString("en");//Date courante
     var json = JSON.parse(readFileSync('data/user.json').toString());
@@ -100,6 +103,8 @@ const { createHash } = require('crypto');
 function hash(string) { return createHash('sha256').update(string).digest('hex'); }
 
 app.use('/check_login', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Checking login'} })
+
     var json = JSON.parse(readFileSync('data/user.json').toString());
     session = req.session
 
@@ -111,7 +116,7 @@ app.use('/check_login', (req, res) => {
         if (json[req.body.user].password == hash(req.body.password)) {
             session.user = req.body.user;
 
-            console.log('logged in')
+            logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Logged in'} })
             res.send({ user: session.user })
         }
         else {
@@ -124,6 +129,8 @@ app.use('/check_login', (req, res) => {
 })
 
 app.use('/register', (req, res) => {
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Registering user'} })
+
     var json = JSON.parse(readFileSync('data/user.json').toString());
     session = req.session
 
@@ -144,9 +151,4 @@ app.use('/register', (req, res) => {
     else {
         res.send({ status: 'fail', err: 'This username already exists, please try again' });
     }
-})
-
-app.use('/authorize', (req, res) => {
-
-
 })

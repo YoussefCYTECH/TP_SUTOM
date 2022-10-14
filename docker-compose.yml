@@ -4,8 +4,6 @@ services:
   score_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
         dockerfile: Dockerfile.score
     ports:
       - "8082:8082"
@@ -18,10 +16,8 @@ services:
   index_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
-        #environment:
-       #   - LOKI=http://loki:4100/
+        environment:
+          - LOKI=http://loki:4100/
         dockerfile: Dockerfile.index
     ports:
       - "8080:8080"
@@ -32,8 +28,6 @@ services:
   auth_service:
     build:
         context: .
-        args:
-            - NODE_ENV=local
         dockerfile: Dockerfile.auth
     ports:
       - "8081:8081"
@@ -47,7 +41,7 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - 4000:4000
+      - 3000:3000
     restart: unless-stopped
 
   loki:
