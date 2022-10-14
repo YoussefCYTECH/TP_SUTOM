@@ -95,13 +95,7 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - [ ] Pas oublier de repasser le mot en aléatoire avant le rendu final (actuellement le mot est Vendredi pour tester plus rapidement). ET SUPPRIMER NOS UTILISATEURS PERSOS
 - [ ] METTRE DES LOGS
 - [ ] DOCUMENTER
-- [X] Leaderboard trié par score
 - [ ] Expliquer en quoi c'est du microservices, et leurs relations
-- [ ] NODE_ENV du docker compose pas utile ?
-- [X] Rajouter une limite au nombre d'essais de l'utilisateur
-- [ ] Fixer le CSS du leaderboard
-- [ ] Empecher de rentrer un mot qui existe pas (EN COURS)
-- [ ] Fix la date 
 
 ## Improvement ideas
 - Refactor all the text displayed to the client. Then implement a translation to different languages
