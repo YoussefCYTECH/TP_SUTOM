@@ -53,8 +53,6 @@ app.use('/win_game', (req, res) => {
     const d = new Date().toLocaleDateString("en");
     var json_user = JSON.parse(readFileSync('data/user.json').toString());
     json_user[req.body.user].last_game = d
-    console.log('data: ' + json_user[req.body.user].last_game)
-    console.log('user + ' + req.body.user)
 
     fs.writeFile("data/user.json", JSON.stringify(json_user, null, '\t'), function (err) {
         if (err) {
@@ -64,6 +62,25 @@ app.use('/win_game', (req, res) => {
 
     res.send("ok")
 })
+
+// Recoit le nom du user connecté et doit mettre à jour la date de derniere partie dans la BDD
+app.use('/lose_game', (req, res) => {
+    //logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player lost the game' } })
+    
+    const d = new Date().toLocaleDateString("en");
+    var json_user = JSON.parse(readFileSync('data/user.json').toString());
+    json_user[req.body.user].last_game = d
+
+    fs.writeFile("data/user.json", JSON.stringify(json_user, null, '\t'), function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+    res.send("ok")
+})
+
+
 
 app.use('/print_score', (req, res) => {
     var json = JSON.parse(readFileSync('data/score.json').toString());

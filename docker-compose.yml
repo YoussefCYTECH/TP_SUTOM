@@ -1,8 +1,5 @@
 version: "3.7"
 
-volumes:
-  web_data:
-
 services:
   score_service:
     build:

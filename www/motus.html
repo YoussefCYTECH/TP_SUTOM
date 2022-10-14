@@ -39,6 +39,7 @@
         </form>
         <br/>
         <!--Affichage des mots bien placés :-->
+        <span id="tries_left"></span><br>
         <span id="progress"></span>
         <br/>
         <br/>
@@ -76,7 +77,7 @@
                 if (data.has_played) {
                     document.getElementById('response').setAttribute('disabled', '')
                     document.getElementById('submit').setAttribute('disabled', '')
-                    document.getElementById('progress').innerHTML = "<br>YOU ALREADY PLAYED TODAY, PLEASE COME BACK TOMORROW"
+                    $("#progress").append("<br>YOU ALREADY PLAYED TODAY, PLEASE COME BACK TOMORROW")
                     document.getElementById('progress').style = "color: yellow"
                 }
             }
@@ -87,6 +88,7 @@
     // Gestion du jeu de MOTUS
     var word = "";
     var attempts = 0;
+    var max_attempts = 6;
 
     $.get("/word", function (data) {
         word = data.trim().toUpperCase()
@@ -134,7 +136,7 @@
                 dicWord.set(letter, parseInt(dicWord.get(letter)) - 1);
             }
         }
-        
+
         // adding the orange and gray letters to the list of spans
         for (i = 0; i < word.length; i++) {
             letter = response[i]
@@ -157,15 +159,17 @@
                 found = false;
             }
         }
-        
+
 
         response_analysis = spanList.join("");
 
-    
+
         $("#progress").append(response_analysis + "<br />")
         $("#response").val('')
         $("#response").focus()
         attempts++;
+
+        document.getElementById('tries_left').innerHTML='Remaining attempts : ' + (max_attempts - attempts)
 
         // Si l'utilisateur a gagné :
         if (found) {
@@ -184,6 +188,25 @@
                     document.getElementById('response').setAttribute('disabled', '')//Empeche le joueur de rejouer
                 }
             })
+        }
+        //Si il a pas gagné et qu'il a épuisé tous ses essais, il peut plus rejouer aujourd'hui:
+        else {
+            if (attempts >= max_attempts) {
+
+                //Met à jour la date de la derniere partie, mais n'augmente pas le score du joueur
+                $.ajax({
+                    url: "http://localhost:8082/lose_game",
+                    type: "POST",
+                    data: {
+                        'user': user_local
+                    },
+                    success: function (data) {
+                        document.getElementById('submit').setAttribute('disabled', '')
+                        document.getElementById('response').setAttribute('disabled', '')
+                        $("#progress").append("<br><span style='color: yellow'>GAME OVER</span> : YOU REACHED THE MAXIMUM TRIES ALLOWED, PLEASE COME BACK TOMORROW")
+                    }
+                })
+            }
         }
     }
 
