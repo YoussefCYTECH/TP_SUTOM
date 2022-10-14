@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-    <title>SUTOM - Leaderboard</title>
+    <title>SUTOM - Classement</title>
     <!-- Jquery -->
     <script src="/jquery-3.6.0.js"></script>
 
@@ -28,18 +28,17 @@
     <div class="container" style="text-align: center;">
         <div>
             <div>
-                <h1>LEADERBOARD</h1>
+                <h1>CLASSEMENT</h1>
             </div>
         </div>
-        <button onclick="document.location='http://localhost:8080/motus.html'"
-            style="background-color: green; border-radius: 4 px; opacity: 0.8; width: 30%">
-            PLAY</button>
+        <button onclick="document.location='http://localhost:8080/motus.html'" style="width:200px;left:0%;top:50%;position:relative;">
+            JOUER</button>
         <br><br>
 
-        <div class="row">
-            <div class="column" style="color: red">PLAYER</div>
-            <div class="column" style="color: red">SCORE</div>
-            <div class="column" style="color: red">AVERAGE TRIES</div>
+        <div class="row" style="background-color:#737373;margin-left:5%;margin-right:5%;">
+            <div class="column" style="color: white;width:30%">JOUEUR</div>
+            <div class="column" style="color: white;width:30%">SCORE</div>
+            <div class="column" style="color: white;width:30%">ESSAIS MOYENS</div>
         </div>
 
         <script>
@@ -69,7 +68,7 @@
             });
 
             items.forEach(elt => {
-                document.write('<div class="row"> <div class="column">' + elt[0] + '</div><div class="column">' + elt[1] + '</div><div class="column">' + round(elt[2], 2) + '</div></div>')
+                document.write('<div class="row" style="margin-left:5%;margin-right:5%""> <div class="column" style="width:30%">' + elt[0] + '</div><div class="column" style="width:30%">' + elt[1] + '</div><div class="column" style="width:30%">' + round(elt[2], 2) + '</div></div>')
             });
         </script>
 

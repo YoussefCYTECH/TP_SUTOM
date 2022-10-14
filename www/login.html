@@ -3,34 +3,38 @@
 
 <head>
     <title>SUTOM - Login</title>
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
     <!-- Jquery -->
     <script src="/jquery-3.6.0.js"></script>
 
 </head>
 
-<body style="font-size:45px; background-color: #62b6e1; color: white;">
+<body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
-        <div class="row" style="background-color: #da4646; border-radius: 20px;">
-            <h1>LOGIN</h1>
+        <div class="row" style="background-color: white; border-radius: 20px;">
+            <h1 style="color:rgba(58, 53, 53, 0.733);">LOGIN</h1>
         </div>
         <br/>
         <div class="row">
             <form id="input" onsubmit="return submit_response()">
 
-                <label>Username :</label>
-                <input type="text" id="user" placeholder="Username" maxlength="20" style="height:25px; border-radius: 5px;" required> </input><br>
+                <label>Nom d'utilisateur :</label>
+                <input type="text" id="user" placeholder="Nom d'utilisateur" maxlength="20" style="height:25px;background-color: white; border-radius: 5px;" required> </input><br>
                 <br/>
-                <label>Password :</label>
-                <input type="password" id="password" placeholder = "Password" style="height:25px; border-radius: 5px;" required></input><br>
+                <label>Mot de passe :</label>
+                <input type="password" id="password" placeholder = "Mot de passe" style="height:25px;background-color: white; border-radius: 5px;" required></input><br>
                 <br/>
-                <input type="submit" value="Submit" style="width: 20%;height:30px;background-color: #e4ca27;color:white; border-radius: 10px; border: 4px solid #af9b1c">
+                <input type="submit" value="CONFIRMER" style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">
             </form>
         </div>
 
         <button onclick="document.location='http://localhost:8080/register'"
-            style=" border-radius: 4 px; width: 20%">REGISTER</button>
-
-        <br><br><span id="response" style="color: red"></span>
+            style=" height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626;width: 20%">S'INSCRIRE</button>
+        <br/>
+            <button onclick="document.location='http://localhost:8082/leaderboard.html'"
+            style=" height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626;width: 150px"">
+            CLASSEMENT</button>
+        <br><br><span id="response" style="color: #b85858"></span>
 
     </div>
 </body>
