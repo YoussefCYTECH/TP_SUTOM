@@ -118,7 +118,7 @@
         $("form").on("submit", function (e) {
             e.preventDefault();
 
-            if (words_list.includes($("#response").val())){
+            if (words_list.includes($("#response").val().toString()+'\r')){
                 submit_response()
             }
             else{
@@ -131,6 +131,7 @@
         response = $("#response").val().toUpperCase()
         if (response.length != word.length) {
             alert("Longueur invalide")
+            return;
         }
 
 
