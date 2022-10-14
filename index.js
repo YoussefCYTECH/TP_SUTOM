@@ -56,5 +56,5 @@ app.get('/word', (req, res) => {
     word = "vendredi"; //Pour test plus vite
     //console.log(word)//Pour test plus vite
 
-    res.send(word);
+    res.send({word, text_array});
 })
