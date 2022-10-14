@@ -12,25 +12,30 @@
 <body style="font-size:45px; background-color: rgba(58, 53, 53, 0.733); color: white;">
     <div class="container" style="text-align: center;">
 
-        <div style="width:100%;display: flex;justify-content: center;"><div>
-            <button onclick="document.location='http://localhost:8080/motus.html'"style="width:200px;left:0%;top:50%;position:relative;">JOUER</button>
+        <div style="width:100%;display: flex;justify-content: center;">
+            <div>
+                <button onclick="document.location='http://localhost:8080/motus.html'"
+                    style="width:200px;left:0%;top:50%;position:relative;">JOUER</button>
 
-            <p style="font-size: 50px;text-align: center; display: inline-block;font-style: italic;padding-left: 50px;padding-right: 50px;">MON SCORE</p>
-    
-            <button onclick="window.location.href = 'http://localhost:8081/logout'" style="width:200px;right:0%;position:relative;top:50%">SE DECONNECTER</button>
-        </div></div>
+                <p
+                    style="font-size: 50px;text-align: center; display: inline-block;font-style: italic;padding-left: 50px;padding-right: 50px;">
+                    MON SCORE</p>
+
+                <button onclick="window.location.href = 'http://localhost:8081/logout'"
+                    style="width:200px;right:0%;position:relative;top:50%">SE DECONNECTER</button>
+            </div>
+        </div>
+
         <button onclick="document.location='http://localhost:8082/leaderboard.html'"
             style="width:200px;left:0%;top:50%;position:relative;">
             CLASSEMENT</button>
-        <br/>
-        <br/>
-        <br/>
+        <br /><br /><br />
+
         <div style="text-align: center;width:100%">
             Salut, <span id="user" style="color: yellow"></span>
         </div>
-        
-        <br/>
-        <br/>
+
+        <br /><br />
         <div class="row">
             Tu as deviné <span id="score" style="color: red"></span>
             mot(s) !
@@ -54,7 +59,7 @@
         async: false,
         success: function (data) {
             if (data.user == null) {
-                alert('Please log in first');
+                alert('Vous devez d\'abord vous connecter');
                 window.location.href = "http://localhost:8080/login.html";
             }
             document.getElementById('user').innerHTML = data.user

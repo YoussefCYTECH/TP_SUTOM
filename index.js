@@ -7,7 +7,6 @@ const app = express()
 const port = process.env.PORT || 8080
 
 const loki_uri = process.env.LOKI || "http://127.0.0.1:3100";
-//const loki_uri = "http://loki:3100/" || "http://127.0.0.1:3100";
 const { createLogger, transports } = require("winston");
 const LokiTransport = require("winston-loki");
 const options = {
@@ -39,12 +38,12 @@ app.use('/score', (req, res) => { res.redirect('score.html') })
 
 
 //Pour le mot aléatoire :
-
 function random_item(items) {
     var seed = seedrandom(date.toDateString())()
     return items[Math.floor(seed * items.length)]
 }
 
+//Renvoit un mot au hasard chaque jour dans la liste de mot. Renvoit aussi la liste des mots francais pour detecter des mots non francais entrés par le joueur
 app.get('/word', (req, res) => {
     logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day' } })
 
@@ -53,6 +52,7 @@ app.get('/word', (req, res) => {
     var text_array = readFileSync('data/liste_francais_utf8.txt').toString().split("\n");
 
     var word = random_item(text_array);
+    //word = "test"
 
     res.send({ word, text_array });
 })

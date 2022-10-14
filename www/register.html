@@ -21,19 +21,20 @@
 
                 <label>Nom d'utilisateur :</label>
                 <input type="text" id="user" placeholder="Username" maxlength="20" required> </input><br>
-                <br/>
+                <br />
                 <label>Mot de passe :</label>
                 <input type="password" id="password" required> </input><br>
-                <br/>
+                <br />
                 <label>Confirmez votre mot de passe :</label>
                 <input type="password" id="password_confirm" required></input><br>
-                <br/>
+                <br />
 
-                <input type="submit" value="CONFIRMER" style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">
+                <input type="submit" value="CONFIRMER"
+                    style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">
             </form>
-            <br/>
+            <br />
             <button onclick="document.location='http://localhost:8080/login'"
-            style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">RETOUR</button>
+                style="width: 20%;height:30px;background-color: white;color:rgba(58, 53, 53, 0.733); border-radius: 10px; border: 4px solid #262626">RETOUR</button>
 
             <br><br><span id="response" style="color: #b85858"></span>
         </div>
@@ -57,10 +58,9 @@
     });
 
 
-    /* //Servira à chiffrer avant d'envoyer, mais il faut trouver comment
-    //sauvegarder le string retourné (pour l'instant renvoi un objet present que dans la partie then())
 
-    function hash(string) {
+    // Fonction de hachage avant envoi. UNUSED
+    /*function hash(string) {
         const utf8 = new TextEncoder().encode(string);
         return crypto.subtle.digest('SHA-256', utf8).then((hashBuffer) => {
             const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -70,16 +70,14 @@
             return hashHex;
         });
     }
-    hash('a').then((hex) => console.log(hex));*/
+    hash('test').then((hex) => console.log(hex));*/
+
 
 
     // On envoie les données à l'API Auth qui s'occupe de l'inscription
     function submit_response() {
-
-
-        //TODO chiffrement avant l'envoi
         if ($("#password").val() != $("#password_confirm").val()) {
-            document.getElementById('response').innerHTML = "The 2 passwords don't match"
+            document.getElementById('response').innerHTML = "Les 2 mots de passe ne correspondent pas"
             return false;
         }
 
@@ -96,8 +94,6 @@
                     document.getElementById('response').innerHTML = data.err
                     return false;
                 }
-
-                console.log("User logged in")
                 window.location.href = "http://localhost:8080";
             }
         })
@@ -107,7 +103,7 @@
     $(function () {
         $("#includedContent").load("footer.html");
     });
-    
+
 </script>
 
 </html>

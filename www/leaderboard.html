@@ -31,7 +31,8 @@
                 <h1>CLASSEMENT</h1>
             </div>
         </div>
-        <button onclick="document.location='http://localhost:8080/motus.html'" style="width:200px;left:0%;top:50%;position:relative;">
+        <button onclick="document.location='http://localhost:8080/motus.html'"
+            style="width:200px;left:0%;top:50%;position:relative;">
             JOUER</button>
         <br><br>
 
@@ -60,12 +61,8 @@
             });
 
             // Sort the array based on the score element :
-            var items = Object.keys(score_json).map(function (key) {
-                return [key, score_json[key].score, score_json[key].average_tries];
-            });
-            items.sort(function (first, second) {
-                return second[1] - first[1];
-            });
+            var items = Object.keys(score_json).map(function (key) { return [key, score_json[key].score, score_json[key].average_tries] });
+            items.sort(function (first, second) { return second[1] - first[1] });
 
             items.forEach(elt => {
                 document.write('<div class="row" style="margin-left:5%;margin-right:5%""> <div class="column" style="width:30%">' + elt[0] + '</div><div class="column" style="width:30%">' + elt[1] + '</div><div class="column" style="width:30%">' + round(elt[2], 2) + '</div></div>')

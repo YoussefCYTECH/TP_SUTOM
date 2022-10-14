@@ -2,5 +2,9 @@
 	"Thierry": {
 		"score": 90,
 		"average_tries": 4
+	},
+    "sutom": {
+		"score": 1,
+		"average_tries": 1
 	}
 }

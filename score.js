@@ -29,7 +29,7 @@ app.listen(port, () => {
 })
 
 
-// Recoit le nom du user connecté et le nombre d'essais pour gagner
+// Recoit le nom du user connecté et le nombre d'essais utilisés
 app.use('/win_game', (req, res) => {
     logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player won the game' } })
     var json = JSON.parse(readFileSync('data/score.json').toString());
@@ -61,7 +61,7 @@ app.use('/win_game', (req, res) => {
     res.send("ok")
 })
 
-// Recoit le nom du user connecté et doit mettre à jour la date de derniere partie dans la BDD
+// Recoit le nom du user connecté et met à jour la date de derniere partie dans la BDD
 app.use('/lose_game', (req, res) => {
     logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Player lost the game' } })
     
@@ -79,7 +79,7 @@ app.use('/lose_game', (req, res) => {
 })
 
 
-
+// Recoit un username et renvoit son score
 app.use('/print_score', (req, res) => {
     logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Getting score'} })
     var json = JSON.parse(readFileSync('data/score.json').toString());
@@ -95,7 +95,7 @@ app.use('/print_score', (req, res) => {
     }
 })
 
-
+// Renvoit le score de tous les utilisateurs ayant déjà joué au moins une fois
 app.use('/get_leaderboard', (req, res) => {
     logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Getting leaderboard'} })
     var json = JSON.parse(readFileSync('data/score.json').toString());
