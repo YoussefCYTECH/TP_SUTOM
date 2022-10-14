@@ -16,9 +16,9 @@ services:
   index_service:
     build:
         context: .
-        environment:
-          - LOKI=http://loki:4100/
         dockerfile: Dockerfile.index
+    environment:
+      - LOKI=http://loki:3100/
     ports:
       - "8080:8080"
     restart: always
@@ -48,7 +48,7 @@ services:
     image: grafana/loki
     container_name: loki
     ports:
-      - 4100:4100
+      - 3100:3100
     restart: unless-stopped
 
   prometheus:

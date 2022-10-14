@@ -4,7 +4,7 @@ const port = 8082
 const { readFileSync, promises: fsPromises } = require('fs')
 var fs = require('fs')
 
-const loki_uri = process.env.LOKI || "http://127.0.0.1:4100";
+const loki_uri = process.env.LOKI || "http://127.0.0.1:3100";
 const { createLogger, transports } = require("winston");
 const LokiTransport = require("winston-loki");
 const options = {
