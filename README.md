@@ -28,13 +28,6 @@ then go to http://localhost:8080
 Default player's account is login : 'sutom', password : 'sutom'.
 You can create new players from the register page
 
-## Dependencies
---> A verifier si un nouveau pc a besoin de les installer ou si elles sont installees dans les dossiers du site
- ```
- npm install express-session
- ```
-
-
 # Author
 Youssef AGOUSSAL and Rose MOUILLE ING3 IA1\
 Cy Tech Cergy October 2022
@@ -89,7 +82,6 @@ We want to store 2 integer variable 'score' 'average' and 2 string 'user' and
 - Going to the game or score page while being unauthentified redirects to the login page
 
 # TODO
-- [ ] Ameliorer/faire les visuels
 - [ ] Pas oublier de repasser le mot en aléatoire avant le rendu final (actuellement le mot est Vendredi pour tester plus rapidement). ET SUPPRIMER NOS UTILISATEURS PERSOS
 - [ ] METTRE DES LOGS
 - [ ] DOCUMENTER

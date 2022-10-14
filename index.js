@@ -17,7 +17,7 @@ const options = {
         })
     ]
 };
-const logger =createLogger(options);
+const logger = createLogger(options);
 
 
 app.use(express.static("www"))
@@ -46,15 +46,13 @@ function random_item(items) {
 }
 
 app.get('/word', (req, res) => {
-    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day'} })
+    logger.info({ message: 'URL ' + req.url, labels: { 'url': req.url, 'why': 'Asking word of the day' } })
 
     const d = new Date();
     let day = d.getDay();
     var text_array = readFileSync('data/liste_francais_utf8.txt').toString().split("\n");
 
     var word = random_item(text_array);
-    word = "vendredi"; //Pour test plus vite
-    //console.log(word)//Pour test plus vite
 
-    res.send({word, text_array});
+    res.send({ word, text_array });
 })

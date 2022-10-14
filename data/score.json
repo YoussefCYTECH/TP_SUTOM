@@ -1,14 +1,6 @@
 {
-	"Youssef": {
-		"score": 3,
-		"average_tries": 1.6666666666666667
-	},
-	"a": {
-		"score": 11,
-		"average_tries": 1.0909090909090908
-	},
-	"rose": {
-		"score": 1,
-		"average_tries": 1
+	"Thierry": {
+		"score": 90,
+		"average_tries": 4
 	}
 }

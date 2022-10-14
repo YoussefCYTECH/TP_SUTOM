@@ -1,18 +1,10 @@
 {
-	"Youssef": {
-		"password": "bb0347a468d97e98a9c00e37cebec1ab930f6f1221cae0f1fbb92b07e1900ba2",
-		"last_game": "10/9/2022"
-	},
-	"a": {
-		"password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
-		"last_game": "10/10/2022"
-	},
-	"rose": {
-		"password": "618d663af0f1ec88a5a19defa65a2f80d06582a832510b12f475d80870bdb3ab",
-		"last_game": "10/12/2022"
-	},
 	"sutom": {
 		"password": "b48e7ce2e482f8c912a6b201eea109b449821ad45da27f91f8da12e156d2f58f",
 		"last_game": ""
+	},
+	"Thierry": {
+		"password": "45591c70c8b034bcb1078fd039982c0815f36931afaa7b867f4725d1c6fba404",
+		"last_game": "10/14/2022"
 	}
 }
